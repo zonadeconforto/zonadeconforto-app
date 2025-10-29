@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: zc-db
+    image: postgres:16
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - zona-network
+
+  web:
+    container_name: zc-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    working_dir: /app/apps/web
+    environment:
+      CI: true
+      NODE_ENV: development
+      DATABASE_URL: ${DATABASE_URL}
+    ports:
+      - "3000:3000"
+      - "5555:5555"
+    volumes:
+      - ./:/app 
+      - /app/node_modules
+    command: sh -c "pnpm install && pnpm dev"
+    depends_on:
+      - database
+    networks:
+      - zona-network
+
+volumes:
+  postgres_data:
+
+networks:
+  zona-network:
+    driver: bridge
