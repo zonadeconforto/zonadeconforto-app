@@ -1,6 +1,6 @@
 # Zona de Conforto
 
-Para executar o projeto copie o arquivo `venv` para `.env`, atualize algumas variáveis de ambiente, principalmente a `JWT_SECRET_KEY` e as credenciais do banco de dados.
+Para executar o projeto copie o arquivo `varenv` para `.env`, atualize algumas variáveis de ambiente, principalmente a `JWT_SECRET_KEY` e as credenciais do banco de dados.
 
 Após isso, execute:
 
