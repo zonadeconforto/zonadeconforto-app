@@ -4,6 +4,8 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// Configuration Prisma Schema
+
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -14,10 +16,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Enums
+
 enum Role {
   ADMIN
   CLIENT
 }
+
+// Models
 
 model User {
   id            String   @id @default(uuid())
