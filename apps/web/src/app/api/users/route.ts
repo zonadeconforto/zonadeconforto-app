@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { userController } from "@/di/user.di";
+import { userController } from "@/di";
 import { Role } from "@/generated/prisma/enums";
-import { HttpException } from "../core/exceptions/http-exception";
+import { HttpException } from "../../core/exceptions/http-exception";
 
 /**
  * Handles HTTP POST requests to create a new user.

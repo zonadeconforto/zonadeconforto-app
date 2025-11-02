@@ -5,7 +5,8 @@ import { UserEntity } from "../entities/user.entity";
 import { hash } from "bcryptjs";
 import { Role } from "../enums/role.enum";
 import { UserService } from "./user.service";
-import { HttpException } from "@/app/api/core/exceptions/http-exception";
+import { HttpException } from "@/app/core/exceptions/http-exception";
+import { SecurityService } from "@/shared/security/utils";
 
 /**
  * Handles the business logic for user operations.
@@ -28,7 +29,7 @@ export class UserServiceImpl implements UserService {
       throw new HttpException("User already exists with this email.");
     }
 
-    const hashedPassword = await hash(password, 12);
+    const hashedPassword = await hash(password, SecurityService.BCRYPT_SALT_ROUNDS);
     const entity = UserEntity.build(name, email, hashedPassword, role);
     return await this.repository.create(entity);
   }

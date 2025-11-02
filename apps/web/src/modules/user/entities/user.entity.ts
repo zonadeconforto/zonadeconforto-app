@@ -6,6 +6,7 @@ import { Role } from "../enums/role.enum";
  */
 export class UserEntity {
   constructor(
+    public readonly id: string | null,
     public readonly name: string,
     public readonly email: string,
     public readonly passwordHash: string,
@@ -24,6 +25,7 @@ export class UserEntity {
     role: Role = Role.CLIENT
   ): UserEntity {
     return new UserEntity(
+      null,
       name,
       email,
       passwordHash,
