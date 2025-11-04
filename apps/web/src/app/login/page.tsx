@@ -32,10 +32,17 @@ export default function LoginPage() {
       const user = await response.json();
       localStorage.setItem("user", JSON.stringify(user));
 
-      if (user.role === "ADMIN") router.push("/home1");
-      else router.push("/home2");
-    } catch (err: any) {
-      setError(err.message);
+      if (user.role === "ADMIN") {
+        router.push("/home1");
+      } else {
+        router.push("/home2");
+      }
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Unexpected error occurred");
+      }
     } finally {
       setLoading(false);
     }

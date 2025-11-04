@@ -5,7 +5,6 @@ import { AuthDatasource } from "@/modules/auth/datasources/auth.datasource";
 import { AuthService } from "@/modules/auth/services/auth.service";
 import { AuthController } from "@/modules/auth/controllers/auth.controller";
 import { TokenJwtService } from "@/modules/auth/services/token-jwt.service";
-import { p } from "framer-motion/client";
 
 // USER DEPENDENCIES
 

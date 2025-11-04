@@ -1,3 +1,5 @@
+import { JwtPayload } from "jsonwebtoken";
+
 /**
  * Abstraction for token generation and validation.
  */
@@ -12,5 +14,5 @@ export interface TokenService {
    * Validates and decodes a token.
    * @param token Token to verify.
    */
-  verifyToken(token: string): any;
+  verifyToken(token: string): string | JwtPayload;
 }
