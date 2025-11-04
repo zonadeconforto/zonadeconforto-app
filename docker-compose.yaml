@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   database:
@@ -35,7 +35,7 @@ services:
       - "3000:3000"
       - "5555:5555"
     volumes:
-      - ./:/app 
+      - ./:/app
       - /app/node_modules
     command: sh -c "pnpm install && pnpm dev"
     depends_on:
