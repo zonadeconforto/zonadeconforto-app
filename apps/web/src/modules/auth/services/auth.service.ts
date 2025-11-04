@@ -12,7 +12,7 @@ export class AuthService {
   constructor(
     private readonly repository: AuthRepository,
     private readonly tokenService: TokenService
-  ) {}
+  ) { }
 
   async login(dto: LoginDTO): Promise<LoggedUserDTO> {
     const user = await this.repository.findByEmail(dto.email);
@@ -21,7 +21,6 @@ export class AuthService {
       throw new HttpException("User not found", 404);
     }
 
-    console.log(user.passwordHash, dto.password);
     const passwordMatch = await bcrypt.compare(dto.password, user.passwordHash);
     if (!passwordMatch) {
       throw new HttpException("Invalid credentials", 401);

@@ -8,6 +8,7 @@ import { RoleEnumMapper } from "./role-enum.mapper";
 export class UserMapper {
   static toEntity(model: UserModel): UserEntity {
     return new UserEntity(
+      model.id,
       model.name,
       model.email,
       model.passwordHash,
@@ -21,7 +22,7 @@ export class UserMapper {
     return {
       name: entity.name,
       email: entity.email,
-      passwordHash: entity.password,
+      passwordHash: entity.passwordHash,
       role: RoleEnumMapper.toORM(entity.role),
     };
   }
