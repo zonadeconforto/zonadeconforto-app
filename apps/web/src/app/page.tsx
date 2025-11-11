@@ -2,7 +2,6 @@ import CTA from "@/shared/components/CTA";
 import Footer from "@/shared/components/Footer";
 import Hero from "@/shared/components/Hero";
 import Navbar from "@/shared/components/Navbar";
-import StatsSection from "@/shared/components/StatsSection";
 import SectionHowWorks from "@/shared/components/SectionHowWorks";
 import SectionContact from "@/shared/components/SectionContact";
 
@@ -11,7 +10,6 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <StatsSection />
       <SectionHowWorks />
       <CTA />
       <SectionContact />

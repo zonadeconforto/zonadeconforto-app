@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white px-8 pt-24 md:flex-row md:justify-between md:px-32">
+    <section className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white px-8 pb-8 pt-24 md:flex-row md:justify-between md:px-32">
       <div className="max-w-2xl md:w-1/2">
         <h1 className="text-4xl md:text-5xl font-bold leading-tight">
           CDBs de Alta Rentabilidade com <span className="text-yellow-400">Proteção Total</span>
