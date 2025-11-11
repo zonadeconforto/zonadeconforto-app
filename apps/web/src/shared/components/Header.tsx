@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Header() {
   return (
     <header
@@ -9,7 +11,7 @@ export default function Header() {
         borderBottom: "1px solid #eee",
       }}
     >
-      <img src="/next.svg" alt="Logo" width={40} />
+      <Image src="/next.svg" alt="Logo" width={40} />
       <h1>Tela Inicial Zona de Conforto</h1>
     </header>
   );
