@@ -2,19 +2,19 @@ import CTA from "@/shared/components/CTA";
 import Footer from "@/shared/components/Footer";
 import Hero from "@/shared/components/Hero";
 import Navbar from "@/shared/components/Navbar";
-import Stats from "@/shared/components/Stats";
-import TelaComoFunciona from "@/shared/components/TelaComoFunciona";
-import TelaContato from "@/shared/components/TelaContato";
+import StatsSection from "@/shared/components/StatsSection";
+import SectionHowWorks from "@/shared/components/SectionHowWorks";
+import SectionContact from "@/shared/components/SectionContact";
 
 export default function Home() {
   return (
     <>
       <Navbar />
       <Hero />
-      <Stats />
-      <TelaComoFunciona />
+      <StatsSection />
+      <SectionHowWorks />
       <CTA />
-      <TelaContato />
+      <SectionContact />
       <Footer />
     </>
   );

@@ -1,7 +1,7 @@
 "use client";
 import { CheckCircle, TrendingUp, DollarSign } from "lucide-react";
 
-export default function TelaComoFunciona() {
+export default function SectionHowWorks() {
   const steps = [
     {
       id: 1,
@@ -34,19 +34,22 @@ export default function TelaComoFunciona() {
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-4xl font-bold mb-4 text-gray-900">Como Funciona</h2>
         <p className="text-lg text-gray-600 mb-16">
-          Nossa plataforma conecta você aos melhores CDBs do mercado, otimizando automaticamente seus investimentos dentro dos limites de proteção do FGC.
+          Nossa plataforma conecta você aos melhores CDBs do mercado, otimizando automaticamente
+          seus investimentos dentro dos limites de proteção do FGC.
         </p>
 
         <div className="grid md:grid-cols-3 gap-12">
-          {steps.map((step) => (
+          {steps.map(step => (
             <div key={step.id} className="flex flex-col items-center text-center">
               <div
                 className={`flex items-center justify-center w-16 h-16 rounded-full mb-6 ${step.bg}`}
               >
                 {step.icon}
               </div>
-              <h3 className="text-lg font-semibold mb-3">{`${step.id}. ${step.title}`}</h3>
-              <p className="text-gray-600 leading-relaxed">{step.description}</p>
+              <h3 className="text-lg font-semibold mb-3 text-gray-900">
+                {`${step.id}. ${step.title}`}
+              </h3>
+              <p className="text-gray-700 leading-relaxed max-w-sm">{step.description}</p>
             </div>
           ))}
         </div>
