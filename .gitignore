@@ -34,3 +34,5 @@
 **/.pnpm-store/
 
 **/generated/
+
+.env*
