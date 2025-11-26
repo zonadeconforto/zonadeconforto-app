@@ -1,7 +1,7 @@
-import { InstitutionModel } from "../models/institution.model.ts";
-import { ICreateInstitutionDto } from "../dtos/create-institution.dto.ts";
+import { CreateInstitutionDto } from "../dtos/create-institution.dto";
+import { InstitutionModel } from "../models/institution.model";
 
-export interface IInstitutionRepository {
-  create(data: ICreateInstitutionDto): Promise<InstitutionModel>;
+export interface InstitutionRepository {
+  create(data: CreateInstitutionDto): Promise<InstitutionModel>;
   findByCnpj(cnpj: string): Promise<InstitutionModel | null>;
 }

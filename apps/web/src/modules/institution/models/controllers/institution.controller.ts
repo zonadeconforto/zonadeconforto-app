@@ -1,5 +1,10 @@
 import { InstitutionService } from "../services/institution.service";
-import { InstitutionDatasource } from "../datasources/institution.datasource";
-// instancia qual vai ser a fonte de dados
-const datasource = new InstitutionDatasource();
-export const institutionService = new InstitutionService(datasource);
+import { CreateInstitutionDto } from "../dtos/create-institution.dto";
+
+export class InstitutionController {
+  constructor(private readonly service: InstitutionService) {}
+
+  async create(data: CreateInstitutionDto): Promise<string> {
+    return await this.service.createInstitution(data);
+  }
+}
