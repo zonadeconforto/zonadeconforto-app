@@ -1,5 +1,5 @@
-import { InstitutionEntity } from "../entities/institution.entity.ts";
-import { InstitutionModel } from "../models/institution.model.ts";
+import { InstitutionEntity } from "../entities/institution.entity.js";
+import { InstitutionModel } from "../models/institution.model.js";
 import { InstitutionOutputDto } from "../dtos/institution-output.dto.ts";
 
 export class InstitutionMapper {
