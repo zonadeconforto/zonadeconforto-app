@@ -5,6 +5,9 @@ import { AuthDatasource } from "@/modules/auth/datasources/auth.datasource";
 import { AuthService } from "@/modules/auth/services/auth.service";
 import { AuthController } from "@/modules/auth/controllers/auth.controller";
 import { TokenJwtService } from "@/modules/auth/services/token-jwt.service";
+import { InstitutionController } from "@/modules/institution/controllers/institution.controller";
+import { InstitutionServiceImpl } from "@/modules/institution/services/institution.service.impl";
+import { InstitutionDatasource } from "@/modules/institution/datasources/institution.datasource";
 
 // USER DEPENDENCIES
 
@@ -16,8 +19,14 @@ export const userController = new UserController(service);
 
 const authDatasource = new AuthDatasource();
 const tokenService = new TokenJwtService(
-    process.env.JWT_SECRET_KEY || "dev_secret",
-    process.env.JWT_TOKEN_EXPIRATION_TIME || "7d"
+  process.env.JWT_SECRET_KEY || "dev_secret",
+  process.env.JWT_TOKEN_EXPIRATION_TIME || "7d"
 );
 const authService = new AuthService(authDatasource, tokenService);
 export const authController = new AuthController(authService);
+
+// INSTITUTION DEPENDENCIES
+
+const institutionDatasource = new InstitutionDatasource();
+const institutionService = new InstitutionServiceImpl(institutionDatasource);
+export const institutionController = new InstitutionController(institutionService);
