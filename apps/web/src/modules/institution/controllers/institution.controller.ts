@@ -1,5 +1,5 @@
-import { InstitutionService } from "../services/institution.service";
 import { CreateInstitutionDto } from "../dtos/create-institution.dto";
+import { InstitutionService } from "../services/institution.service";
 
 export class InstitutionController {
   constructor(private readonly service: InstitutionService) {}

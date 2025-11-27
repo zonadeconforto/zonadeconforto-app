@@ -1,5 +1,5 @@
 import { CreateInstitutionDto } from "../dtos/create-institution.dto";
-import { InstitutionModel } from "../models/institution.model";
+import { InstitutionModel } from "../models/models/institution.model";
 
 export interface InstitutionRepository {
   create(data: CreateInstitutionDto): Promise<InstitutionModel>;
