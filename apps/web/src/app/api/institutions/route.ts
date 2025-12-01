@@ -1,6 +1,5 @@
 import { HttpException } from "@/app/core/exceptions/http-exception";
 import { institutionController } from "@/di";
-import Error from "next/error";
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 
