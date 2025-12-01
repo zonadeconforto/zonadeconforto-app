@@ -35,3 +35,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unexpected server error" }, { status: 500 });
   }
 }
+/**
+ * GET return institutions
+ */
+export async function GET() {
+  try {
+    const institutions = await institutionController.findAll();
+    return NextResponse.json(institutions, { status: 200 });
+  } catch (error: unknown) {
+    console.error("Error when searching for institutions:", error);
+
+    if (error instanceof HttpException) {
+      return NextResponse.json({ error: error.message }, { status: error.status || 400 });
+    }
+
+    return NextResponse.json({ error: "Unexpected server error" }, { status: 500 });
+  }
+}

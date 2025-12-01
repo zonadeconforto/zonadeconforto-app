@@ -23,4 +23,10 @@ export class InstitutionDatasource implements InstitutionRepository {
       where: { cnpj },
     });
   }
+  async findAll(): Promise<InstitutionModel[]> {
+    return orm.financialInstitution.findMany({
+      // order by descending order
+      orderBy: { createdAt: "desc" },
+    });
+  }
 }
