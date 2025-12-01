@@ -28,6 +28,46 @@ enum FinancialInstitutionType {
   BROKERAGE
 }
 
+enum ProductType {
+  CDB
+  LCI
+  LCA
+  DEBENTURE
+  OTHER
+}
+
+enum ProfitabilityType {
+  PREFIXED
+  CDI_POST_FIXED
+  IPCA_PLUS
+  HYBRID
+}
+
+enum IndexerType {
+  CDI
+  IPCA
+  SELIC
+}
+
+enum LiquidityType {
+  DAILY
+  MATURITY
+  GRACE_PERIOD
+}
+
+enum IncomeTaxType {
+  REGRESSIVE
+  EXEMPT
+  EXCLUSIVE
+}
+
+enum InvestmentProductStatus {
+  ACTIVE
+  INACTIVE
+  COMING_SOON
+  EXPIRED
+}
+
 // Models
 
 model User {
@@ -48,4 +88,33 @@ model FinancialInstitution {
   site      String?
   createdAt DateTime                 @default(now())
   updatedAt DateTime                 @updatedAt
+
+  investimentProducts InvestmentProduct[]
+}
+
+model InvestmentProduct {
+  id                     String                  @id @default(uuid())
+  name                   String
+  productType            ProductType
+  financialInstitutionId String
+  profitabilityType      ProfitabilityType
+  profitabilityValue     Decimal                 @db.Decimal(6, 2)
+  indexer                IndexerType?
+  termMonths             Int
+  liquidity              LiquidityType
+  graceDays              Int?
+  minValue               Decimal                 @db.Decimal(18, 2)
+  maxValue               Decimal                 @db.Decimal(18, 2)
+  startOfferDate         DateTime?
+  endOfferDate           DateTime?
+  adminFee               Decimal?                @default(0) @db.Decimal(5, 4)
+  incomeTax              IncomeTaxType
+  description            String?
+  status                 InvestmentProductStatus @default(ACTIVE)
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+
+  institution FinancialInstitution @relation(fields: [financialInstitutionId], references: [id])
+
+  @@index([financialInstitutionId])
 }
