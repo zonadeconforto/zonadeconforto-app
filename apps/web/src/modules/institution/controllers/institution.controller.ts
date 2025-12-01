@@ -7,6 +7,7 @@ export class InstitutionController {
   async create(data: CreateInstitutionDto): Promise<string> {
     return await this.service.createInstitution(data);
   }
+
   async findAll() {
     return await this.service.findAllInstitutions();
   }

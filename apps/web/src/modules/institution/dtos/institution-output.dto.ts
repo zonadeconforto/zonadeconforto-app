@@ -7,6 +7,4 @@ export interface InstitutionOutputDto {
   cnpj: string;
   type: FinancialInstitutionType;
   site?: string | null;
-  createdAt: Date;
-  updatedAt: Date;
 }
