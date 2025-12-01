@@ -20,6 +20,7 @@ export class InstitutionServiceImpl implements InstitutionService {
     const entity = InstitutionMapper.toEntity(created);
     return entity.id;
   }
+
   async findAllInstitutions(): Promise<InstitutionOutputDto[]> {
     const items = await this.repository.findAll();
     return items.map(i => InstitutionMapper.toOutput(InstitutionMapper.toEntity(i)));

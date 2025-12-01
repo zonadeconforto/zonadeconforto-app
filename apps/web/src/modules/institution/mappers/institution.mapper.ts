@@ -14,8 +14,6 @@ export class InstitutionMapper {
       cnpj: entity.cnpj,
       type: entity.type,
       site: entity.site,
-      createdAt: entity.createdAt,
-      updatedAt: entity.updatedAt,
     };
   }
 }
