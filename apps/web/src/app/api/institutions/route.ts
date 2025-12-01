@@ -36,7 +36,7 @@ export async function POST(request: Request) {
   }
 }
 /**
- * GET return institutions
+ * GET  return institutions
  */
 export async function GET() {
   try {
