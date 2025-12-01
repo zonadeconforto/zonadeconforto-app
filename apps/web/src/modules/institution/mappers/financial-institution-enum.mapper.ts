@@ -3,7 +3,7 @@ import { FinancialInstitutionType as TsFinancialInstitutionType } from "@/module
 
 export class FinancialInstitutionTypeMapper {
   /**
-   * Converte enum do Prisma para enum da aplicação
+   * convert enum of prisma into enum of aplication
    */
   static toDomain(type: PrismaFinancialInstitutionType): TsFinancialInstitutionType {
     switch (type) {
@@ -17,7 +17,7 @@ export class FinancialInstitutionTypeMapper {
   }
 
   /**
-   * Converte enum da aplicação para enum do Prisma
+   * convert enum of aplication into enum of prisma
    */
   static toPrisma(type: TsFinancialInstitutionType): PrismaFinancialInstitutionType {
     switch (type) {
