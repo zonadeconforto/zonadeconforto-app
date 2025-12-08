@@ -25,4 +25,8 @@ export class InstitutionServiceImpl implements InstitutionService {
     const items = await this.repository.findAll();
     return items.map(i => InstitutionMapper.toOutput(InstitutionMapper.toEntity(i)));
   }
+
+  async deleteInstitution(id: string): Promise<void> {
+    await this.repository.delete(id);
+  }
 }

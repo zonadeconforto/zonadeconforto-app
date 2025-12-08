@@ -19,15 +19,21 @@ export class InstitutionDatasource implements InstitutionRepository {
   }
 
   async findByCnpj(cnpj: string): Promise<InstitutionModel | null> {
-    return orm.financialInstitution.findUnique({
+    return await orm.financialInstitution.findUnique({
       where: { cnpj },
     });
   }
 
   async findAll(): Promise<InstitutionModel[]> {
-    return orm.financialInstitution.findMany({
+    return await orm.financialInstitution.findMany({
       // order by descending order
       orderBy: { createdAt: "desc" },
+    });
+  }
+
+  async delete(id: string): Promise<void> {
+    await orm.financialInstitution.delete({
+      where: { id },
     });
   }
 }

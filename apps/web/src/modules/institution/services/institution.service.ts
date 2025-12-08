@@ -7,4 +7,5 @@ import { InstitutionOutputDto } from "../dtos/institution-output.dto";
 export interface InstitutionService {
   createInstitution(createInstitutionDto: CreateInstitutionDto): Promise<string>;
   findAllInstitutions(): Promise<InstitutionOutputDto[]>;
+  deleteInstitution(id: string): Promise<void>;
 }
