@@ -11,4 +11,8 @@ export class InstitutionController {
   async findAll() {
     return await this.service.findAllInstitutions();
   }
+
+  async delete(id: string) {
+    return await this.service.deleteInstitution(id);
+  }
 }

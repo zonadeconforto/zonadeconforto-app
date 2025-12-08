@@ -5,4 +5,5 @@ export interface InstitutionRepository {
   create(data: CreateInstitutionDto): Promise<InstitutionModel>;
   findByCnpj(cnpj: string): Promise<InstitutionModel | null>;
   findAll(): Promise<InstitutionModel[]>;
+  delete(id: string): Promise<void>;
 }
