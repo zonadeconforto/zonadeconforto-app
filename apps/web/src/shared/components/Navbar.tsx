@@ -1,16 +1,15 @@
-import React from "react";
+import LoginPage from "@/app/login/page";
 
 export default function Navbar() {
   return (
     <nav className="flex justify-between items-center px-8 py-4 bg-white shadow-sm fixed w-full top-0 z-50">
       <a href="#">
-      <div className="flex items-center gap-2">
-        <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-        <span className="text-white font-bold text-lg">ZC</span></div>
-        <span className="font-semibold text-gray-800 text-lg">
-          Zona de Conforto
-        </span>
-      </div>
+        <div className="flex items-center gap-2">
+          <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-lg">ZC</span>
+          </div>
+          <span className="font-semibold text-gray-800 text-lg">Zona de Conforto</span>
+        </div>
       </a>
 
       <ul className="hidden md:flex items-center gap-8 text-gray-700">
@@ -25,7 +24,7 @@ export default function Navbar() {
           </a>
         </li>
         <li>
-          <a href="#" className="hover:text-blue-600">
+          <a href="login" className="hover:text-blue-600">
             Entrar
           </a>
         </li>
