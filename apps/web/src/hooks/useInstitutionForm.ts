@@ -1,3 +1,7 @@
+/*
+centralizes the form logic (state, validation, and submit)
+this keeps the page.tsx file clean and makes everything easier
+*/
 import { useState } from "react";
 import { createInstitution } from "../services/institutionService";
 
