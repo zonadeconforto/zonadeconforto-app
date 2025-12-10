@@ -1,3 +1,4 @@
+// reusable input component to maintain visual consistency
 interface TextInputProps {
   label: string;
   value: string;

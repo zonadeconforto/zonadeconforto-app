@@ -1,3 +1,7 @@
+/*
+function responsible for sending the institution creation payload
+keep the communication with the API isolated from the UI
+*/
 export interface InstitutionPayload {
   name: string;
   cnpj: string;
