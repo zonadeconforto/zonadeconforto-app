@@ -67,7 +67,7 @@ export default function InstitutionsPage() {
     if (!editData) return;
 
     const res = await fetch(`http://localhost:3000/api/institutions/${editData.id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editData),
     });

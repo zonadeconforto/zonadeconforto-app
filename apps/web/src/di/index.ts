@@ -27,6 +27,6 @@ export const authController = new AuthController(authService);
 
 // INSTITUTION DEPENDENCIES
 
-const institutionDatasource = new InstitutionDatasource();
-const institutionService = new InstitutionServiceImpl(institutionDatasource);
+const institutionRepository = new InstitutionDatasource();
+const institutionService = new InstitutionServiceImpl(institutionRepository);
 export const institutionController = new InstitutionController(institutionService);
