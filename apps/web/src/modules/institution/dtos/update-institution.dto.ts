@@ -1,9 +1,18 @@
-// para se precisar trocar algo, dar update em algo de uma instituição futuramente
-import { FinancialInstitutionType } from "@/generated/prisma/enums";
+import { z } from "zod";
+import { CreateInstitutionSchema } from "./create-institution.dto";
 
-export interface UpdateInstitutionDto {
-  name?: string;
-  cnpj?: string;
-  type?: FinancialInstitutionType;
-  site?: string | null;
-}
+/**
+ * Zod schema for updating an institution
+ * All fields are optional except `id`, which is required
+ */
+export const UpdateInstitutionSchema = z.object({
+  name: z.string().optional(),
+  cnpj: z.string().optional(),
+  type: z.enum(["BANK", "PAYMENT", "OTHER"]).optional(),
+  site: z.string().nullable().optional(),
+});
+
+/**
+ * TypeScript DTO for Institution Update
+ */
+export type UpdateInstitutionDto = z.infer<typeof UpdateInstitutionSchema>;
