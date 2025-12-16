@@ -28,7 +28,8 @@ export default function NewInstitutionPage() {
           label="CNPJ"
           value={form.cnpj}
           required
-          placeholder="Ex: 11111111111111"
+          mask="xx.xxx.xxx/xxxx-xx"
+          placeholder="00.000.000/0000-00"
           onChange={v => updateField("cnpj", v)}
         />
 
@@ -46,7 +47,7 @@ export default function NewInstitutionPage() {
         <TextInput
           label="Site (opcional)"
           value={form.site}
-          placeholder="https://site.com.br"
+          placeholder="https://banco.com.br"
           onChange={v => updateField("site", v)}
         />
 

@@ -1,3 +1,5 @@
+import { useMask } from "@react-input/mask";
+
 /**
  * Props for the TextInput component.
  *
@@ -7,6 +9,7 @@
  * @property {(value: string) => void} onChange - Callback triggered whenever the input value changes.
  * @property {string} [placeholder] - Text shown when the input is empty.
  * @property {boolean} [required] - Indicates whether the field is required.
+ * @property {string} [mask] - Optional input mask pattern (e.g. CNPJ).
  */
 interface TextInputProps {
   label: string;
@@ -14,27 +17,38 @@ interface TextInputProps {
   onChange: (value: string) => void;
   placeholder?: string;
   required?: boolean;
+  mask?: string;
 }
 
 /**
- * Reusable text input component designed to maintain visual and behavioral
- * consistency across the application.
+ * Reusable text input component with optional input masking support.
  *
- * Displays a label and a styled input field, and triggers the `onChange`
- * function whenever the user modifies the value. It supports optional
- * placeholder text and a required field indicator (*).
+ * Uses `@react-input/mask` when a mask is provided, otherwise behaves
+ * as a regular controlled input.
  *
  * @function TextInput
  * @param {TextInputProps} props - The component properties.
  * @returns {JSX.Element} A reusable text input element.
  */
-export function TextInput({ label, value, onChange, placeholder, required }: TextInputProps) {
+export function TextInput({ label, value, onChange, placeholder, required, mask }: TextInputProps) {
+  const inputRef = useMask(
+    mask
+      ? {
+          mask,
+          replacement: { x: /\d/ },
+          showMask: false,
+        }
+      : undefined
+  );
+
   return (
     <div>
       <label className="block mb-1 font-medium">
         {label} {required && "*"}
       </label>
+
       <input
+        // ref={mask ? inputRef : undefined}
         className="w-full p-2 rounded bg-zinc-900 border border-zinc-700"
         value={value}
         placeholder={placeholder}

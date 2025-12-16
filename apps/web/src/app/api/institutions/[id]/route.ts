@@ -32,16 +32,13 @@ export async function PATCH(request: Request, { params }: { params: { id: string
   try {
     const { id } = await params;
     const body = await request.json();
-    console.log(body, params);
-    const parsed = UpdateInstitutionSchema.safeParse({ body });
-    console.log(parsed);
+    const parsed = UpdateInstitutionSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json(
         { error: "Invalid payload", details: parsed.error.flatten() },
         { status: 400 }
       );
     }
-
     const updatedInstitution = await institutionController.update(id, parsed.data);
 
     return NextResponse.json(

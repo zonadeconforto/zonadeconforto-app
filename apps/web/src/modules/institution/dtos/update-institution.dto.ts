@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { CreateInstitutionSchema } from "./create-institution.dto";
 
 /**
  * Zod schema for updating an institution
@@ -8,7 +7,7 @@ import { CreateInstitutionSchema } from "./create-institution.dto";
 export const UpdateInstitutionSchema = z.object({
   name: z.string().optional(),
   cnpj: z.string().optional(),
-  type: z.enum(["BANK", "PAYMENT", "OTHER"]).optional(),
+  type: z.enum(["BANK", "BROKERAGE"]).optional(),
   site: z.string().nullable().optional(),
 });
 

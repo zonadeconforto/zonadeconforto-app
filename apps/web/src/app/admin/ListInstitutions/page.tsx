@@ -1,5 +1,6 @@
 "use client";
 
+import { TextInput } from "@/components/TextInput";
 import { useEffect, useState } from "react";
 
 // Formatador de CNPJ
@@ -146,6 +147,7 @@ export default function InstitutionsPage() {
           </tbody>
         </table>
       </div>
+
       {/* confirmation modal */}
       {deleteId && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
@@ -187,11 +189,20 @@ export default function InstitutionsPage() {
               onChange={e => setEditData({ ...editData, name: e.target.value })}
             />
             <h2>CNPJ</h2>
-            <input
+            <TextInput
+              // className="w-full p-2 rounded bg-zinc-800 border border-zinc-700"
+              label="CNPJ"
+              value={editData.cnpj}
+              required
+              mask="xx.xxx.xxx/xxxx-xx"
+              placeholder="00.000.000/0000-00"
+              onChange={e => setEditData({ ...editData, cnpj: e })}
+            />
+            {/* <input
               className="w-full p-2 rounded bg-zinc-800 border border-zinc-700"
               value={editData.cnpj}
               onChange={e => setEditData({ ...editData, cnpj: e.target.value })}
-            />
+            /> */}
             <h2>Tipo de Instituição</h2>
             <select
               className="w-full p-2 rounded bg-zinc-800 border border-zinc-700"

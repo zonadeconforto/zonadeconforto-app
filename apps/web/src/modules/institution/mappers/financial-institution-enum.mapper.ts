@@ -10,7 +10,7 @@ export class FinancialInstitutionTypeMapper {
       case PrismaFinancialInstitutionType.BANK:
         return TsFinancialInstitutionType.BANK;
       case PrismaFinancialInstitutionType.BROKERAGE:
-        return TsFinancialInstitutionType.BROKER;
+        return TsFinancialInstitutionType.BROKERAGE;
       default:
         throw new Error(`Prisma enum not mapped: ${type}`);
     }
@@ -23,7 +23,7 @@ export class FinancialInstitutionTypeMapper {
     switch (type) {
       case TsFinancialInstitutionType.BANK:
         return PrismaFinancialInstitutionType.BANK;
-      case TsFinancialInstitutionType.BROKER:
+      case TsFinancialInstitutionType.BROKERAGE:
         return PrismaFinancialInstitutionType.BROKERAGE;
       default:
         throw new Error(`Domain enum not mapped: ${type}`);
