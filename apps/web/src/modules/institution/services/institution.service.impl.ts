@@ -42,9 +42,7 @@ export class InstitutionServiceImpl implements InstitutionService {
 
   async updateInstitution(id: string, data: UpdateInstitutionDto): Promise<InstitutionOutputDto> {
     const exists = await this.repository.findById(id);
-    console.log("🔥 ID recebido:", id);
-    console.log("🔥 DATA recebida:", data);
-    console.log("🔥 Exists:", exists);
+
     if (!exists) {
       throw new HttpException("Institution not found", 404);
     }
