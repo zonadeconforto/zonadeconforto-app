@@ -8,6 +8,9 @@ import { TokenJwtService } from "@/modules/auth/services/token-jwt.service";
 import { InstitutionController } from "@/modules/institution/controllers/institution.controller";
 import { InstitutionServiceImpl } from "@/modules/institution/services/institution.service.impl";
 import { InstitutionDatasource } from "@/modules/institution/datasources/institution.datasource";
+import { InvestmentProductServiceImpl } from "@/modules/investment-product/services/investment-product.service.impl";
+import { InvestmentProductController } from "@/modules/investment-product/controllers/investment-product.controller";
+import { InvestmentProductPrismaDatasource } from "@/modules/investment-product/datasources/investment-product.datasource";
 
 // USER DEPENDENCIES
 
@@ -27,6 +30,18 @@ export const authController = new AuthController(authService);
 
 // INSTITUTION DEPENDENCIES
 
-const institutionRepository = new InstitutionDatasource();
-const institutionService = new InstitutionServiceImpl(institutionRepository);
-export const institutionController = new InstitutionController(institutionService);
+const institutionDatasource = new InstitutionDatasource();
+const institutionService = new InstitutionServiceImpl(institutionDatasource);
+export const institutionController = new InstitutionController(
+  institutionService
+);
+
+// INVESTMENT PRODUCT DEPENDENCIES
+
+const investmentProductRepository = new InvestmentProductPrismaDatasource();
+export const investmentProductService = new InvestmentProductServiceImpl(
+  investmentProductRepository
+);
+export const investmentProductController = new InvestmentProductController(
+  investmentProductService
+);
