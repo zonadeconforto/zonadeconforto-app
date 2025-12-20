@@ -1,7 +1,7 @@
 import { CreateInvestmentProductDTO } from "@/modules/investment-product/dtos/create-investment-product.dto";
 import { UpdateInvestmentProductDTO } from "@/modules/investment-product/dtos/update-investment-product.dto";
-import { OutputInvestmentProductDTO } from "@/modules/investment-product/dtos/output-investment-product.dto";
 import { InvestmentProductService } from "@/modules/investment-product/services/investment-product.service";
+import { OutputInvestmentProductDTO } from "../dtos/output-investiment-product.dto";
 
 /**
  * Controller for InvestmentProduct HTTP handling.
@@ -18,7 +18,7 @@ export class InvestmentProductController {
 
   async list(): Promise<OutputInvestmentProductDTO[]> {
     const entities = await this.service.list();
-    return entities.map((e) => OutputInvestmentProductDTO.parse(e));
+    return entities.map(e => OutputInvestmentProductDTO.parse(e));
   }
 
   async getById(id: string): Promise<OutputInvestmentProductDTO> {
@@ -26,10 +26,7 @@ export class InvestmentProductController {
     return OutputInvestmentProductDTO.parse(entity);
   }
 
-  async update(
-    id: string,
-    payload: unknown
-  ): Promise<OutputInvestmentProductDTO> {
+  async update(id: string, payload: unknown): Promise<OutputInvestmentProductDTO> {
     const dto = UpdateInvestmentProductDTO.parse(payload);
     const updated = await this.service.update(id, dto);
     return OutputInvestmentProductDTO.parse(updated);

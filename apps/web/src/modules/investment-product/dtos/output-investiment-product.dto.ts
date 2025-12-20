@@ -1,10 +1,10 @@
 import { z } from "zod";
 
 export const OutputInvestmentProductSchema = z.object({
-  id: z.string().uuid(),
+  id: z.uuid(),
   name: z.string(),
   productType: z.string(),
-  financialInstitutionId: z.string().uuid(),
+  financialInstitutionId: z.uuid(),
   profitabilityType: z.string(),
   profitabilityValue: z.number(),
   indexer: z.string().nullable(),
@@ -19,11 +19,7 @@ export const OutputInvestmentProductSchema = z.object({
   incomeTax: z.string(),
   description: z.string().nullable(),
   status: z.string(),
-  createdAt: z.string().nullable(),
-  updatedAt: z.string().nullable(),
 });
 
-export type OutputInvestmentProductDTO = z.infer<
-  typeof OutputInvestmentProductSchema
->;
+export type OutputInvestmentProductDTO = z.infer<typeof OutputInvestmentProductSchema>;
 export const OutputInvestmentProductDTO = OutputInvestmentProductSchema;
