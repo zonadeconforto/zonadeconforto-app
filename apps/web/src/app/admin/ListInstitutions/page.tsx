@@ -53,7 +53,6 @@ export default function InstitutionsPage() {
       method: "DELETE",
     });
 
-    console.log(response);
     if (response.status === 200) {
       setInstitutions(prev => prev.filter(inst => inst.id !== deleteId));
     } else {

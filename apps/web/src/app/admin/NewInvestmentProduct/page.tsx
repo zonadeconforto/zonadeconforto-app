@@ -48,8 +48,6 @@ export default function NewInvestmentProduct() {
   }
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log("e");
-    console.log("FORM_PAYLOAD", form);
     try {
       setLoading(true);
       setError(null);
@@ -76,8 +74,18 @@ export default function NewInvestmentProduct() {
       <h1 className="text-3xl font-bold text-center">Cadastrar Produto de Investimento</h1>
       {error && <p className="p-3 bg-red-900/30 border border-red-700 rounded-lg">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
+        <SelectInput
+          label="Instituição *"
+          value={form.financialInstitutionId}
+          onChange={v => updateField("financialInstitutionId", v)}
+          options={institutions.map(i => ({
+            value: i.id,
+            label: i.name,
+          }))}
+        />
+
         <TextInput
-          label="Nome *"
+          label="Nome"
           value={form.name}
           required
           placeholder="Ex: CDB Banco XP 120% CDI"
@@ -95,16 +103,6 @@ export default function NewInvestmentProduct() {
             { value: "DEBENTURE", label: "Debênture" },
             { value: "OTHER", label: "Outro" },
           ]}
-        />
-
-        <SelectInput
-          label="Instituição *"
-          value={form.financialInstitutionId}
-          onChange={v => updateField("financialInstitutionId", v)}
-          options={institutions.map(i => ({
-            value: i.id,
-            label: i.name,
-          }))}
         />
 
         <SelectInput
@@ -203,7 +201,6 @@ export default function NewInvestmentProduct() {
 
         <button
           type="submit"
-          onClick={() => console.log("cliquei no botão")}
           disabled={loading}
           className="w-full p-3 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold disabled:opacity-60"
         >

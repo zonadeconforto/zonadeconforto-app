@@ -114,5 +114,5 @@ model InvestmentProduct {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  financialInstitution FinancialInstitution @relation(fields: [financialInstitutionId], references: [id])
+  financialInstitution FinancialInstitution @relation(fields: [financialInstitutionId], references: [id], onDelete: Cascade)
 }
