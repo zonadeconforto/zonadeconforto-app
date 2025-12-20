@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
-import { investmentProductController } from "@/di";
 import { HttpException } from "@/app/core/exceptions/http-exception";
+import { investmentProductController } from "@/di";
 
 const controller = investmentProductController;
 
@@ -27,11 +27,12 @@ export async function GET(req: Request) {
     const list = await controller.list();
     return NextResponse.json(list, { status: 200 });
   } catch (error: unknown) {
+    console.error("[InvestmentProduct GET Error]", error);
     if (error instanceof ZodError) {
       return NextResponse.json(
         {
           error: "Required fields not found",
-          errors: error.issues.map((e) => ({
+          errors: error.issues.map(e => ({
             path: e.path.join("."),
             message: e.message,
           })),
@@ -41,16 +42,10 @@ export async function GET(req: Request) {
     }
 
     if (error instanceof HttpException) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.status || 400 }
-      );
+      return NextResponse.json({ error: error.message }, { status: error.status || 400 });
     }
 
-    return NextResponse.json(
-      { error: "Unexpected server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Unexpected server error" }, { status: 500 });
   }
 }
 
@@ -64,7 +59,7 @@ export async function POST(req: Request) {
       return NextResponse.json(
         {
           error: "Required fields not found",
-          errors: error.issues.map((e) => ({
+          errors: error.issues.map(e => ({
             path: e.path.join("."),
             message: e.message,
           })),
@@ -74,16 +69,10 @@ export async function POST(req: Request) {
     }
 
     if (error instanceof HttpException) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.status || 400 }
-      );
+      return NextResponse.json({ error: error.message }, { status: error.status || 400 });
     }
 
-    return NextResponse.json(
-      { error: "Unexpected server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Unexpected server error" }, { status: 500 });
   }
 }
 
@@ -92,10 +81,7 @@ export async function PATCH(req: Request) {
     const url = new URL(req.url);
     const id = url.searchParams.get("id");
     if (!id) {
-      return NextResponse.json(
-        { error: "id query param is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "id query param is required" }, { status: 400 });
     }
 
     const body = (await req.json()) as unknown;
@@ -106,7 +92,7 @@ export async function PATCH(req: Request) {
       return NextResponse.json(
         {
           error: "Validation error",
-          errors: error.issues.map((e) => ({
+          errors: error.issues.map(e => ({
             path: e.path.join("."),
             message: e.message,
           })),
@@ -116,16 +102,10 @@ export async function PATCH(req: Request) {
     }
 
     if (error instanceof HttpException) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.status || 400 }
-      );
+      return NextResponse.json({ error: error.message }, { status: error.status || 400 });
     }
 
-    return NextResponse.json(
-      { error: "Unexpected server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Unexpected server error" }, { status: 500 });
   }
 }
 
@@ -134,24 +114,15 @@ export async function DELETE(req: Request) {
     const url = new URL(req.url);
     const id = url.searchParams.get("id");
     if (!id) {
-      return NextResponse.json(
-        { error: "id query param is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "id query param is required" }, { status: 400 });
     }
 
     await controller.delete(id);
     return NextResponse.json({ message: "Deleted" }, { status: 204 });
   } catch (error: unknown) {
     if (error instanceof HttpException) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.status || 400 }
-      );
+      return NextResponse.json({ error: error.message }, { status: error.status || 400 });
     }
-    return NextResponse.json(
-      { error: "Unexpected server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Unexpected server error" }, { status: 500 });
   }
 }

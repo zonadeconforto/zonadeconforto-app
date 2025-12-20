@@ -4,7 +4,7 @@
  * @interface InstitutionPayload
  * @property {string} name - The institution's name.
  * @property {string} cnpj - A 14-digit unique identifier for Brazilian institutions.
- * @property {string} type - The type of institution (e.g., BANK, BROKER).
+ * @property {string} type - The type of institution (e.g., BANK, BROKERAGE).
  * @property {string | null} [site] - Optional website URL for the institution.
  */
 export interface InstitutionPayload {
@@ -14,26 +14,29 @@ export interface InstitutionPayload {
   site?: string | null;
 }
 
+/**
+ * Institution representation returned by the API.
+ * Used mainly for selects and relationships (id → name).
+ */
+export interface Institution {
+  id: string;
+  name: string;
+  cnpj: string;
+  type: string;
+  site?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 /**
  * Sends a POST request to the API to create a new financial institution.
  *
- * This function isolates API communication from the UI layer, ensuring that
- * components and hooks do not directly handle HTTP requests.
- *
- * Steps performed:
- * - Validates the presence of the API base URL
- * - Sends the payload to the backend
- * - Handles success and server/network errors
- *
  * @async
  * @function createInstitution
  * @param {InstitutionPayload} payload - The data required to register a new institution.
- * @returns {Promise<{ success: boolean; message?: string }>} The operation result.
- *
- * - `success: true` → Institution created successfully
- * - `success: false` → An error occurred (`message` provides additional info)
+ * @returns {Promise<{ success: boolean; message?: string }>}
  */
 export async function createInstitution(payload: InstitutionPayload) {
   if (!API_BASE_URL) {
@@ -57,4 +60,30 @@ export async function createInstitution(payload: InstitutionPayload) {
     console.error(err);
     return { success: false, message: "Server error." };
   }
+}
+/**
+ * Fetches all registered financial institutions.
+ *
+ * This is used by forms that need to associate entities by ID
+ * (e.g. Investment Products creation).
+ *
+ * @async
+ * @function listInstitutions
+ * @returns {Promise<Institution[]>}
+ */
+export async function listInstitutions(): Promise<Institution[]> {
+  if (!API_BASE_URL) {
+    throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined.");
+  }
+
+  const response = await fetch(`${API_BASE_URL}/institutions`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch institutions.");
+  }
+
+  return response.json();
 }

@@ -41,11 +41,78 @@ model User {
 }
 
 model FinancialInstitution {
-  id        String                   @id @default(uuid())
-  name      String
-  cnpj      String                   @unique
-  type      FinancialInstitutionType
-  site      String?
-  createdAt DateTime                 @default(now())
-  updatedAt DateTime                 @updatedAt
+  id                 String                   @id @default(uuid())
+  name               String
+  cnpj               String                   @unique
+  type               FinancialInstitutionType
+  site               String?
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+  investmentProducts InvestmentProduct[]
+}
+
+enum ProductType {
+  CDB
+  LCI
+  LCA
+  DEBENTURE
+  OTHER
+}
+
+enum ProfitabilityType {
+  PREFIXED
+  CDI_POST_FIXED
+  IPCA_PLUS
+  HYBRID
+}
+
+enum IndexerType {
+  CDI
+  IPCA
+  SELIC
+}
+
+enum LiquidityType {
+  DAILY
+  MATURITY
+  GRACE_PERIOD
+}
+
+enum IncomeTaxType {
+  REGRESSIVE
+  EXEMPT
+  EXCLUSIVE
+}
+
+enum InvestmentProductStatus {
+  ACTIVE
+  INACTIVE
+  COMING_SOON
+  EXPIRED
+}
+
+model InvestmentProduct {
+  id                     String                  @id @default(uuid())
+  name                   String
+  productType            ProductType
+  financialInstitutionId String
+  profitabilityType      ProfitabilityType
+  profitabilityValue     Decimal
+  indexer                IndexerType?
+  termMonths             Int
+  liquidity              LiquidityType
+  graceDays              Int?
+  minValue               Decimal
+  maxValue               Decimal
+  startOfferDate         DateTime?
+  endOfferDate           DateTime?
+  adminFee               Decimal                 @default(0)
+  incomeTax              IncomeTaxType
+  description            String?
+  status                 InvestmentProductStatus @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  financialInstitution FinancialInstitution @relation(fields: [financialInstitutionId], references: [id])
 }
