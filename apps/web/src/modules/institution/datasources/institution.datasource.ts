@@ -20,7 +20,6 @@ export class InstitutionDatasource implements InstitutionRepository {
   }
 
   async findByCnpj(cnpj: string): Promise<InstitutionModel | null> {
-    console.log("eu aqui");
     return await orm.financialInstitution.findUnique({
       where: { cnpj },
     });
