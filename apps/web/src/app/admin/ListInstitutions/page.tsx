@@ -2,7 +2,6 @@
 
 import { SelectInput } from "@/components/SelectInput";
 import { TextInput } from "@/components/TextInput";
-import { color } from "framer-motion";
 import { useEffect, useState } from "react";
 
 // Formatador de CNPJ

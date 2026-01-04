@@ -62,7 +62,7 @@ export default function NewInvestmentProduct() {
         indexer: form.indexer || undefined,
       });
 
-      router.push("/ListInvestmentProducts");
+      router.push("admin/ListInvestmentProducts");
     } catch (err) {
       setError("Failed to create investment product");
     } finally {
@@ -131,7 +131,7 @@ export default function NewInvestmentProduct() {
         {/* if the profitabilityType is PREFIXED the Indexer must be CDI */}
         {form.profitabilityType === "PREFIXED" && (
           <SelectInput
-            backgroundColor="grey"
+            backgroundColor="white"
             label="Indexador *"
             value={form.indexer}
             onChange={v => updateField("indexer", v)}
@@ -141,7 +141,7 @@ export default function NewInvestmentProduct() {
 
         {(form.profitabilityType === "CDI_POST_FIXED" || form.profitabilityType === "HYBRID") && (
           <SelectInput
-            backgroundColor=""
+            backgroundColor="white"
             label="Indexador *"
             value={form.indexer}
             onChange={v => updateField("indexer", v)}
