@@ -13,7 +13,7 @@ export default function NewInstitutionPage() {
         <h1 className="text-3xl font-bold">Cadastrar Instituição</h1>
       </center>
 
-      {message && <p className="p-3 bg-zinc-800 rounded-lg border border-zinc-700">{message}</p>}
+      {message && <p className="p-3 bg-emerald-500 rounded-lg border border-zinc-700">{message}</p>}
 
       <form onSubmit={submitForm} className="space-y-4">
         <TextInput
@@ -32,8 +32,9 @@ export default function NewInstitutionPage() {
           placeholder="00.000.000/0000-00"
           onChange={v => updateField("cnpj", v)}
         />
-
         <SelectInput
+          textColor="black"
+          backgroundColor="white"
           label="Tipo"
           value={form.type}
           required
@@ -50,13 +51,16 @@ export default function NewInstitutionPage() {
           placeholder="https://banco.com.br"
           onChange={v => updateField("site", v)}
         />
-
-        <button
-          type="submit"
-          className="w-full p-3 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold"
-        >
-          Cadastrar Instituição
-        </button>
+        <div>
+          <p style={{ color: "white" }}>
+            <button
+              type="submit"
+              className="w-full p-3 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold"
+            >
+              Cadastrar Instituição
+            </button>
+          </p>
+        </div>
       </form>
     </main>
   );

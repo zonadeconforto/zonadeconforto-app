@@ -67,7 +67,7 @@ export function useInstitutionForm() {
     });
 
     if (result.success) {
-      setMessage("Institution successfully registered!");
+      setMessage("Instituição registrada com sucesso!");
       setForm({ name: "", cnpj: "", type: "BANK", site: "" });
     } else {
       setMessage(result.message || "Error registering institution.");

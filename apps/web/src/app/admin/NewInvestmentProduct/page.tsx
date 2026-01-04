@@ -28,6 +28,7 @@ export default function NewInvestmentProduct() {
     indexer: "",
     termMonths: 12,
     liquidity: "MATURITY",
+    graceDays: 0,
     minValue: 0,
     maxValue: 0,
     description: "",
@@ -61,7 +62,7 @@ export default function NewInvestmentProduct() {
         indexer: form.indexer || undefined,
       });
 
-      router.push("/institution");
+      router.push("/ListInvestmentProducts");
     } catch (err) {
       setError("Failed to create investment product");
     } finally {
@@ -75,6 +76,7 @@ export default function NewInvestmentProduct() {
       {error && <p className="p-3 bg-red-900/30 border border-red-700 rounded-lg">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <SelectInput
+          backgroundColor="white"
           label="Instituição *"
           value={form.financialInstitutionId}
           onChange={v => updateField("financialInstitutionId", v)}
@@ -93,6 +95,7 @@ export default function NewInvestmentProduct() {
         />
 
         <SelectInput
+          backgroundColor="white"
           label="Tipo do Produto *"
           value={form.productType}
           onChange={v => updateField("productType", v)}
@@ -106,6 +109,7 @@ export default function NewInvestmentProduct() {
         />
 
         <SelectInput
+          backgroundColor="white"
           label="Tipo de Rentabilidade *"
           value={form.profitabilityType}
           onChange={v => updateField("profitabilityType", v)}
@@ -124,8 +128,20 @@ export default function NewInvestmentProduct() {
           onChange={v => updateField("profitabilityValue", Number(v))}
         />
 
+        {/* if the profitabilityType is PREFIXED the Indexer must be CDI */}
+        {form.profitabilityType === "PREFIXED" && (
+          <SelectInput
+            backgroundColor="grey"
+            label="Indexador *"
+            value={form.indexer}
+            onChange={v => updateField("indexer", v)}
+            options={[{ value: "CDI", label: "CDI" }]}
+          />
+        )}
+
         {(form.profitabilityType === "CDI_POST_FIXED" || form.profitabilityType === "HYBRID") && (
           <SelectInput
+            backgroundColor=""
             label="Indexador *"
             value={form.indexer}
             onChange={v => updateField("indexer", v)}
@@ -145,6 +161,7 @@ export default function NewInvestmentProduct() {
         />
 
         <SelectInput
+          backgroundColor="white"
           label="Liquidez *"
           value={form.liquidity}
           onChange={v => updateField("liquidity", v)}
@@ -177,6 +194,7 @@ export default function NewInvestmentProduct() {
         />
 
         <SelectInput
+          backgroundColor="white"
           label="Status"
           value={form.status}
           onChange={v => updateField("status", v)}
@@ -189,6 +207,7 @@ export default function NewInvestmentProduct() {
         />
 
         <SelectInput
+          backgroundColor="white"
           label="Imposto de Renda *"
           value={form.incomeTax}
           onChange={v => updateField("incomeTax", v)}

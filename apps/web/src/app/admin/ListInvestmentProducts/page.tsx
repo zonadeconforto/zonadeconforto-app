@@ -32,25 +32,25 @@ export default function ListInvestmentProducts() {
 
       <div className="overflow-x-auto">
         <table className="w-full border border-zinc-700 rounded-lg">
-          <thead className="bg-zinc-800">
-            <tr>
-              <th className="p-3 text-left">Nome</th>
-              <th className="p-3 text-left">Tipo</th>
-              <th className="p-3 text-left">Liquidez</th>
-              <th className="p-3 text-left">Vencimento</th>
-              <th className="p-3 text-left">Valor mínimo</th>
-              <th className="p-3 text-left">Ações</th>
+          <thead>
+            <tr className="bg-slate-300 text-left">
+              <th className="p-3 border border-zinc-700">Nome</th>
+              <th className="p-3 border border-zinc-700">Tipo</th>
+              <th className="p-3 border border-zinc-700">Liquidez</th>
+              <th className="p-3 border border-zinc-700">Vencimento</th>
+              <th className="p-3 border border-zinc-700">Valor mínimo</th>
+              <th className="p-3 border border-zinc-700">Ações</th>
             </tr>
           </thead>
 
           <tbody>
             {data.map(item => (
-              <tr key={item.id} className="border-t border-zinc-700 hover:bg-zinc-800">
-                <td className="p-3 font-medium">{item.name}</td>
-                <td className="p-3">{item.productType}</td>
-                <td className="p-3">{item.liquidity}</td>
-                <td className="p-3">{item.termMonths} meses</td>
-                <td className="p-3">
+              <tr key={item.id} className="bg-white hover:bg-blue-300">
+                <td className="p-3 border-zinc-700 font-medium capitalize">{item.name}</td>
+                <td className="p-3 border border-zinc-700">{item.productType}</td>
+                <td className="p-3 border border-zinc-700">{item.liquidity}</td>
+                <td className="p-3 border border-zinc-700">{item.termMonths} meses</td>
+                <td className="p-3 border border-zinc-700">
                   {item.minValue.toLocaleString("pt-BR", {
                     style: "currency",
                     currency: "BRL",

@@ -4,7 +4,7 @@ import { useMask } from "@react-input/mask";
  * Props for the TextInput component.
  */
 interface TextInputProps {
-  label: string;
+  label?: string;
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
@@ -12,6 +12,8 @@ interface TextInputProps {
   mask?: string;
   type?: React.HTMLInputTypeAttribute;
   error?: string | null;
+  backgroundColor?: string;
+  textColor?: string;
 }
 
 /**
@@ -26,6 +28,8 @@ export function TextInput({
   mask,
   type = "text",
   error,
+  backgroundColor,
+  textColor,
 }: TextInputProps) {
   const inputRef = useMask(mask ? { mask, replacement: { x: /\d/ } } : undefined);
 
@@ -36,6 +40,7 @@ export function TextInput({
       </label>
 
       <input
+        style={{ backgroundColor: backgroundColor, color: textColor }}
         ref={mask ? inputRef : undefined}
         type={type}
         value={value}

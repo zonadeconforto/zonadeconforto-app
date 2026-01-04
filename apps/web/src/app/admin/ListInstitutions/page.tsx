@@ -1,6 +1,8 @@
 "use client";
 
+import { SelectInput } from "@/components/SelectInput";
 import { TextInput } from "@/components/TextInput";
+import { color } from "framer-motion";
 import { useEffect, useState } from "react";
 
 // Formatador de CNPJ
@@ -19,7 +21,7 @@ interface Institution {
   name: string;
   cnpj: string;
   type: string;
-  site: string | null;
+  site?: string | null;
 }
 
 export default function InstitutionsPage() {
@@ -79,17 +81,17 @@ export default function InstitutionsPage() {
   }
 
   if (loading) {
-    return <main className="p-6 text-white">Carregando...</main>;
+    return <main className="p-6 ">Carregando...</main>;
   }
 
   return (
-    <main className="p-6 space-y-6 text-white">
+    <main className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Instituições Cadastradas</h1>
 
         <a
           href="/admin/NewInstitution"
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-semibold"
+          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-xl  font-semibold"
         >
           + Nova Instituição
         </a>
@@ -98,7 +100,7 @@ export default function InstitutionsPage() {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse rounded-lg overflow-hidden">
           <thead>
-            <tr className="bg-zinc-800 text-left">
+            <tr className="bg-slate-300 text-left">
               <th className="p-3 border border-zinc-700">Nome</th>
               <th className="p-3 border border-zinc-700">CNPJ</th>
               <th className="p-3 border border-zinc-700">Tipo</th>
@@ -109,7 +111,7 @@ export default function InstitutionsPage() {
 
           <tbody>
             {institutions.map(inst => (
-              <tr key={inst.id} className="bg-zinc-900 hover:bg-zinc-800">
+              <tr key={inst.id} className="bg-white hover:bg-blue-300">
                 <td className="p-3 border border-zinc-700 capitalize">{inst.name}</td>
                 <td className="p-3 border border-zinc-700">{formatCNPJ(inst.cnpj)}</td>
                 <td className="p-3 border border-zinc-700">
@@ -131,7 +133,7 @@ export default function InstitutionsPage() {
                     onClick={() => setEditData(inst)}
                     className="text-yellow-400 hover:text-yellow-300"
                   >
-                    🖉
+                    ✏️
                   </button>
 
                   <button
@@ -151,23 +153,28 @@ export default function InstitutionsPage() {
       {deleteId && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
           <div className="bg-zinc-900 p-6 rounded-xl space-y-4 w-80 text-center border border-zinc-700">
-            <h2 className="text-xl font-bold">Apagar instituição X?</h2>
-            <p>Tem certeza que quer apagar esta instituição?</p>
+            <p style={{ color: "white" }} className="text-xl font-bold ">
+              Apagar está instituição?
+            </p>
+            <p style={{ color: "white" }}>Tem certeza que quer apagar esta instituição?</p>
 
             <div className="flex justify-between">
-              <button
-                onClick={() => setDeleteId(null)}
-                className="px-4 py-2 bg-zinc-700 rounded-lg"
-              >
-                Cancelar
-              </button>
-
-              <button
-                onClick={handleDelete}
-                className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg"
-              >
-                Apagar
-              </button>
+              <p style={{ color: "white" }}>
+                <button
+                  onClick={() => setDeleteId(null)}
+                  className="px-4 py-2 bg-zinc-700 rounded-lg"
+                >
+                  Cancelar
+                </button>
+              </p>
+              <p style={{ color: "white" }}>
+                <button
+                  onClick={handleDelete}
+                  className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg"
+                >
+                  Apagar
+                </button>
+              </p>
             </div>
           </div>
         </div>
@@ -178,44 +185,43 @@ export default function InstitutionsPage() {
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
           <form
             onSubmit={handleEditSubmit}
-            className="bg-zinc-900 p-6 rounded-xl space-y-4 w-200 border border-zinc-700"
+            className="bg-amber-50 p-6 rounded-xl space-y-4 w-200 border border-zinc-700"
           >
-            <h2 className="text-xl font-bold">Editar Instituição</h2>
-            <h2>Nome:</h2>
-            <input
-              className="w-full p-2 rounded bg-zinc-800 border border-zinc-700"
+            <h1 className="text-xl font-bold">Editar Instituição</h1>
+            <div className="mt-4">
+              <h2>Nome:</h2>
+            </div>
+
+            <TextInput
               value={editData.name}
-              onChange={e => setEditData({ ...editData, name: e.target.value })}
+              placeholder="https://banco.com.br"
+              onChange={valor => setEditData({ ...editData, name: valor })}
             />
             <h2>CNPJ</h2>
             <TextInput
-              // className="w-full p-2 rounded bg-zinc-800 border border-zinc-700"
-              label="CNPJ"
+              backgroundColor="white"
               value={editData.cnpj}
-              required
               mask="xx.xxx.xxx/xxxx-xx"
               placeholder="00.000.000/0000-00"
               onChange={e => setEditData({ ...editData, cnpj: e })}
             />
-            {/* <input
-              className="w-full p-2 rounded bg-zinc-800 border border-zinc-700"
-              value={editData.cnpj}
-              onChange={e => setEditData({ ...editData, cnpj: e.target.value })}
-            /> */}
             <h2>Tipo de Instituição</h2>
-            <select
-              className="w-full p-2 rounded bg-zinc-800 border border-zinc-700"
+            <SelectInput
+              textColor="black"
+              backgroundColor="white"
               value={editData.type}
-              onChange={e => setEditData({ ...editData, type: e.target.value })}
-            >
-              <option value="BANK">Banco</option>
-              <option value="BROKERAGE">Corretora</option>
-            </select>
+              onChange={e => setEditData({ ...editData, type: e })}
+              options={[
+                { value: "BANK", label: "Banco" },
+                { value: "BROKERAGE", label: "Corretora" },
+              ]}
+            />
             <h2>Site</h2>
-            <input
-              className="w-full p-2 rounded bg-zinc-800 border border-zinc-700"
+            <TextInput
+              backgroundColor="white"
               value={editData.site ?? ""}
-              onChange={e => setEditData({ ...editData, site: e.target.value })}
+              placeholder="https://banco.com.br"
+              onChange={e => setEditData({ ...editData, site: e })}
             />
             <div className="flex justify-between">
               <button
