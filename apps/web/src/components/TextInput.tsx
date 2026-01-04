@@ -2,14 +2,6 @@ import { useMask } from "@react-input/mask";
 
 /**
  * Props for the TextInput component.
- *
- * @interface TextInputProps
- * @property {string} label - Text displayed above the input field.
- * @property {string} value - Current value of the input.
- * @property {(value: string) => void} onChange - Callback triggered whenever the input value changes.
- * @property {string} [placeholder] - Text shown when the input is empty.
- * @property {boolean} [required] - Indicates whether the field is required.
- * @property {string} [mask] - Optional input mask pattern (e.g. CNPJ).
  */
 interface TextInputProps {
   label: string;
@@ -18,43 +10,44 @@ interface TextInputProps {
   placeholder?: string;
   required?: boolean;
   mask?: string;
+  type?: React.HTMLInputTypeAttribute;
+  error?: string | null;
 }
 
 /**
- * Reusable text input component with optional input masking support.
- *
- * Uses `@react-input/mask` when a mask is provided, otherwise behaves
- * as a regular controlled input.
- *
- * @function TextInput
- * @param {TextInputProps} props - The component properties.
- * @returns {JSX.Element} A reusable text input element.
+ * Reusable text input component with optional mask support.
  */
-export function TextInput({ label, value, onChange, placeholder, required, mask }: TextInputProps) {
-  const inputRef = useMask(
-    mask
-      ? {
-          mask,
-          replacement: { x: /\d/ },
-          showMask: false,
-        }
-      : undefined
-  );
+export function TextInput({
+  label,
+  value,
+  onChange,
+  placeholder,
+  required,
+  mask,
+  type = "text",
+  error,
+}: TextInputProps) {
+  const inputRef = useMask(mask ? { mask, replacement: { x: /\d/ } } : undefined);
 
   return (
-    <div>
-      <label className="block mb-1 font-medium">
+    <div className="space-y-1">
+      <label className="block text-sm font-medium text-gray-700">
         {label} {required && "*"}
       </label>
 
       <input
-        // ref={mask ? inputRef : undefined}
-        className="w-full p-2 rounded bg-zinc-900 border border-zinc-700"
+        ref={mask ? inputRef : undefined}
+        type={type}
         value={value}
         placeholder={placeholder}
         required={required}
         onChange={e => onChange(e.target.value)}
+        className={`text-black w-full p-2 rounded-lg border focus:ring-2 focus:ring-blue-500
+          ${error ? "border-red-500" : "border-gray-300"}
+        `}
       />
+
+      {error && <span className="text-xs text-red-500">{error}</span>}
     </div>
   );
 }

@@ -61,7 +61,7 @@ export default function NewInvestmentProduct() {
         indexer: form.indexer || undefined,
       });
 
-      router.push("/home1");
+      router.push("/institution");
     } catch (err) {
       setError("Failed to create investment product");
     } finally {

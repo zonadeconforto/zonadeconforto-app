@@ -59,8 +59,10 @@ export function useInstitutionForm() {
       return;
     }
 
+    const cleanCnpj = form.cnpj.replace(/\D/g, "");
     const result = await createInstitution({
       ...form,
+      cnpj: cleanCnpj,
       site: form.site || null,
     });
 

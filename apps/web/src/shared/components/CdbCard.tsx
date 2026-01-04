@@ -1,0 +1,58 @@
+"use client";
+
+interface CdbCardProps {
+  id: string;
+  name: string;
+  profitabilityValue: number;
+  termMonths: number;
+  liquidity: string;
+  minValue: number;
+  maxValue: number;
+  selected: boolean;
+  onSelect: (id: string) => void;
+}
+
+export function CdbCard({
+  id,
+  name,
+  profitabilityValue,
+  termMonths,
+  liquidity,
+  minValue,
+  maxValue,
+  selected,
+  onSelect,
+}: CdbCardProps) {
+  return (
+    <button
+      onClick={() => onSelect(id)}
+      className={`w-full text-left border rounded-xl p-6 transition
+        ${selected ? "border-blue-500 bg-blue-50" : "border-gray-200 hover:border-blue-300"}
+      `}
+    >
+      <div className="flex justify-between items-start">
+        <div className="space-y-3">
+          <h3 className="text-xl font-semibold">{name}</h3>
+
+          <p className="text-base text-gray-600">Rentabilidade: {profitabilityValue}% ao ano</p>
+
+          <p className="text-base text-gray-600">Prazo: {termMonths} meses</p>
+
+          <p className="text-base text-gray-600">Liquidez: {liquidity}</p>
+
+          <p className="text-base text-gray-600">
+            Valor mínimo: R$ {minValue.toLocaleString("pt-BR")}
+          </p>
+
+          <p className="text-base text-gray-600">
+            Valor máximo: R$ {maxValue.toLocaleString("pt-BR")}
+          </p>
+        </div>
+
+        <span className="text-green-600 font-bold text-lg">
+          +{Math.floor(profitabilityValue / 15)}% a.a.
+        </span>
+      </div>
+    </button>
+  );
+}

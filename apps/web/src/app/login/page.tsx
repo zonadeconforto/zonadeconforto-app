@@ -33,7 +33,7 @@ export default function LoginPage() {
       localStorage.setItem("user", JSON.stringify(user));
 
       if (user.role === "ADMIN") {
-        router.push("/home1");
+        router.push("/institution");
       } else {
         router.push("/home2");
       }
@@ -71,21 +71,17 @@ export default function LoginPage() {
               />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Entrar na sua conta
-          </h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Entrar na sua conta</h2>
           <p className="text-gray-600">Acesse sua área de investimentos</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              CPF
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">CPF</label>
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               placeholder="fulano@mail.com.br"
               maxLength={99}
               required
@@ -94,22 +90,18 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Senha
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Senha</label>
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               placeholder="Digite sua senha"
               required
               className="form-input w-full border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
-          {error && (
-            <div className="text-red-500 text-sm text-center">{error}</div>
-          )}
+          {error && <div className="text-red-500 text-sm text-center">{error}</div>}
 
           <div className="flex items-center justify-between text-sm">
             <label className="flex items-center">
