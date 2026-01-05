@@ -35,13 +35,13 @@ export default function ListInvestmentProducts() {
       <div className="overflow-x-auto">
         <table className="w-full border border-zinc-700 rounded-lg">
           <thead className="bg-zinc-800">
-            <tr>
-              <th className="p-3 text-left">Nome</th>
-              <th className="p-3 text-left">Tipo</th>
-              <th className="p-3 text-left">Liquidez</th>
-              <th className="p-3 text-left">Vencimento</th>
-              <th className="p-3 text-left">Valor mínimo</th>
-              <th className="p-3 text-left">Ações</th>
+            <tr className="bg-slate-300 text-left">
+              <th className="p-3 border border-zinc-700">Nome</th>
+              <th className="p-3 border border-zinc-700">Tipo</th>
+              <th className="p-3 border border-zinc-700">Liquidez</th>
+              <th className="p-3 border border-zinc-700">Vencimento</th>
+              <th className="p-3 border border-zinc-700">Valor mínimo</th>
+              <th className="p-3 border border-zinc-700">Ações</th>
             </tr>
           </thead>
 
