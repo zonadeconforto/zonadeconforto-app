@@ -33,9 +33,9 @@ export default function LoginPage() {
       localStorage.setItem("user", JSON.stringify(user));
 
       if (user.role === "ADMIN") {
-        router.push("/institution");
+        router.push("/admin");
       } else {
-        router.push("/home2");
+        router.push("/client/investmentproducts");
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
