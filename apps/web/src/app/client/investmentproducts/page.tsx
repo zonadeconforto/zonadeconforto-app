@@ -12,7 +12,7 @@ import {
   investmentProductToUi,
   type Cdb,
 } from "@/modules/investment-product/mappers/investment-product-to-ui.mapper";
-import Navbar from "@/shared/components/Navbar";
+import NavbarLogado from "@/shared/components/NavbarLogado";
 
 export default function CdbListPage() {
   const router = useRouter();
@@ -43,7 +43,7 @@ export default function CdbListPage() {
 
   return (
     <>
-      <Navbar />
+      <NavbarLogado />
 
       <main className="max-w-5xl mx-auto px-4 py-20">
         <h1 className="text-3xl font-bold text-center mt-10">CDBs Disponíveis</h1>

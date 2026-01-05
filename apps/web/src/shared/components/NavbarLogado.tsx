@@ -21,19 +21,6 @@ export default function Navbar() {
             Contato
           </a>
         </li>
-        <li>
-          <a href="login" className="hover:text-blue-600">
-            Entrar
-          </a>
-        </li>
-        <li>
-          <a
-            href="/signup"
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-all"
-          >
-            Cadastre-se
-          </a>
-        </li>
       </ul>
     </nav>
   );
