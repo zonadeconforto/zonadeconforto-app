@@ -1,4 +1,4 @@
-import { TextInput } from "@/components/TextInput";
+import { TextInput } from "@/shared/components/TextInput";
 
 interface PhoneInputProps {
   value: string;

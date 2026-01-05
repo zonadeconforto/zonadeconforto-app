@@ -1,6 +1,6 @@
 "use client";
 
-import { TextInput } from "@/components/TextInput";
+import { TextInput } from "@/shared/components/TextInput";
 import { isValidCpf } from "../utils/validators/cpf";
 
 /**

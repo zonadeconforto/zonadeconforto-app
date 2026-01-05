@@ -1,7 +1,7 @@
 "use client";
 
-import { SelectInput } from "@/components/SelectInput";
-import { TextInput } from "@/components/TextInput";
+import { SelectInput } from "@/shared/components/SelectInput";
+import { TextInput } from "@/shared/components/TextInput";
 import { useInstitutionForm } from "@/hooks/useInstitutionForm";
 
 export default function NewInstitutionPage() {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { AppRouteApiUrl } from "@/shared/strings/app-route-api-url";
+import { TextInput } from "@/shared/components/TextInput";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -77,27 +78,24 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-            <input
+            <TextInput
+              label="Email"
               type="email"
               value={email}
-              onChange={e => setEmail(e.target.value)}
               placeholder="fulano@mail.com.br"
-              maxLength={99}
               required
-              className="form-input w-full border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              onChange={v => setEmail(v)}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Senha</label>
-            <input
+            <TextInput
+              label="Senha"
               type="password"
               value={password}
-              onChange={e => setPassword(e.target.value)}
               placeholder="Digite sua senha"
               required
-              className="form-input w-full border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              onChange={v => setPassword(v)}
             />
           </div>
 

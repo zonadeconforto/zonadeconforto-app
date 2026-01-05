@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import SignupTerms from "./SignupTerms";
-import { TextInput } from "@/components/TextInput";
+import { TextInput } from "@/shared/components/TextInput";
 import { CpfInput } from "./CpfInput";
 import { PhoneInput } from "./PhoneInput";
 import { EmailInput } from "./EmailInput";

@@ -1,7 +1,7 @@
 "use client";
 
-import { SelectInput } from "@/components/SelectInput";
-import { TextInput } from "@/components/TextInput";
+import { SelectInput } from "@/shared/components/SelectInput";
+import { TextInput } from "@/shared/components/TextInput";
 import { useEffect, useState } from "react";
 
 // Formatador de CNPJ

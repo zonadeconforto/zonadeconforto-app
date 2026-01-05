@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import { listInstitutions, Institution } from "@/services/institutionService";
 import { useState } from "react";
-import { TextInput } from "@/components/TextInput";
-import { SelectInput } from "@/components/SelectInput";
+import { TextInput } from "@/shared/components/TextInput";
+import { SelectInput } from "@/shared/components/SelectInput";
 import { useRouter } from "next/navigation";
 import { investmentProductHttpService } from "@/services/investmentProductService";
 
