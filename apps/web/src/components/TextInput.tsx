@@ -5,7 +5,7 @@ import { useMask } from "@react-input/mask";
  */
 interface TextInputProps {
   label?: string;
-  value: string;
+  value: string | number;
   onChange: (value: string) => void;
   placeholder?: string;
   required?: boolean;
