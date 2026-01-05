@@ -1,54 +1,39 @@
 "use client";
 
+"use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { CdbCard } from "@/shared/components/CdbCard";
+import { CdbCard } from "@/shared/components/InvestmentProductCard";
 import { ContinueSimulationButton } from "@/shared/components/ContinueSimulationButton";
-import Navbar from "@/shared/components/Navbar";
 
-/**
- * Temporary mock – this will come from investmentProductService later
- */
-const mockCdbs = [
-  {
-    id: "1",
-    name: "teste1",
-    profitabilityValue: 110,
-    termMonths: 12,
-    liquidity: "No vencimento",
-    minValue: 1000,
-    maxValue: 200000,
-  },
-  {
-    id: "2",
-    name: "teste2",
-    profitabilityValue: 120,
-    termMonths: 18,
-    liquidity: "No vencimento",
-    minValue: 5000,
-    maxValue: 210000,
-  },
-  {
-    id: "3",
-    name: "teste3",
-    profitabilityValue: 105,
-    termMonths: 6,
-    liquidity: "Diária após 90 dias",
-    minValue: 500,
-    maxValue: 240000,
-  },
-];
+import { investmentProductHttpService } from "@/services/investmentProductService";
+import {
+  investmentProductToUi,
+  type Cdb,
+} from "@/modules/investment-product/mappers/investment-product-to-ui.mapper";
+import Navbar from "@/shared/components/Navbar";
 
 export default function CdbListPage() {
   const router = useRouter();
 
-  const [cdbs, setCdbs] = useState<typeof mockCdbs>([]);
+  const [cdbs, setCdbs] = useState<Cdb[]>([]);
   const [selectedCdbId, setSelectedCdbId] = useState<string | null>(null);
 
   useEffect(() => {
-    // depois troca isso por service
-    setCdbs(mockCdbs);
+    async function loadCdbs() {
+      try {
+        const products = await investmentProductHttpService.list();
+
+        const mapped = products.filter(p => p.status === "ACTIVE").map(investmentProductToUi);
+
+        setCdbs(mapped);
+      } catch (error) {
+        console.error("Error loading investment products", error);
+      }
+    }
+
+    loadCdbs();
   }, []);
 
   function handleContinue() {

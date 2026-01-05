@@ -1,4 +1,4 @@
-import { OutputInvestmentProductDTO } from "@/modules/investment-product/dtos/output-investiment-product.dto";
+import { OutputInvestmentProductDTO } from "@/modules/investment-product/dtos/output-investment-product.dto";
 
 export const investmentProductHttpService = {
   async list(): Promise<OutputInvestmentProductDTO[]> {

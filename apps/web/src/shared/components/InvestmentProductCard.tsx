@@ -32,26 +32,30 @@ export function CdbCard({
     >
       <div className="flex justify-between items-start">
         <div className="space-y-3">
-          <h3 className="text-xl font-semibold">{name}</h3>
+          <h3 className="text-2xl font-semibold">{name}</h3>
 
-          <p className="text-base text-gray-600">Rentabilidade: {profitabilityValue}% ao ano</p>
+          <p className="text-xl text-gray-600">Rentabilidade: {profitabilityValue}% ao ano</p>
 
-          <p className="text-base text-gray-600">Prazo: {termMonths} meses</p>
+          <p className="text-xl text-gray-600">Prazo: {termMonths} meses</p>
 
-          <p className="text-base text-gray-600">Liquidez: {liquidity}</p>
+          <p className="text-xl text-gray-600">Liquidez: {liquidity}</p>
 
-          <p className="text-base text-gray-600">
+          <p className="text-xl text-gray-600">
             Valor mínimo: R$ {minValue.toLocaleString("pt-BR")}
           </p>
 
-          <p className="text-base text-gray-600">
+          <p className="text-xl text-gray-600">
             Valor máximo: R$ {maxValue.toLocaleString("pt-BR")}
           </p>
         </div>
 
-        <span className="text-green-600 font-bold text-lg">
-          +{Math.floor(profitabilityValue / 15)}% a.a.
-        </span>
+        <div className="flex flex-col">
+          <span className="text-green-600 font-bold text-3xl">
+            +{Math.floor(profitabilityValue / 15)}% a.a.
+          </span>
+
+          <span className="whitespace-pre-wrap text-lg">Rendimento estimado</span>
+        </div>
       </div>
     </button>
   );

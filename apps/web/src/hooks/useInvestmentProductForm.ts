@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { OutputInvestmentProductDTO } from "@/modules/investment-product/dtos/output-investiment-product.dto";
+import { OutputInvestmentProductDTO } from "@/modules/investment-product/dtos/output-investment-product.dto";
 import { investmentProductHttpService } from "@/services/investmentProductService";
 
 export function useInvestmentProducts() {
