@@ -2,7 +2,6 @@ import { PrismaClient, Role } from "@/generated/prisma/client";
 import { SecurityService } from "@/shared/security/utils";
 import bcrypt from "bcryptjs";
 
-
 const prisma = new PrismaClient();
 
 async function main() {
@@ -18,7 +17,7 @@ async function main() {
     return;
   }
 
-  const hashedPassword = await bcrypt.hash(adminPassword, SecurityService.BCRYPT_SALT_ROUNDS);
+  const hashedPassword = await bcrypt.hash(adminPassword, await SecurityService.getSalt());
 
   await prisma.user.create({
     data: {
@@ -33,7 +32,7 @@ async function main() {
 }
 
 main()
-  .catch((e) => {
+  .catch(e => {
     console.error(e);
     process.exit(1);
   })

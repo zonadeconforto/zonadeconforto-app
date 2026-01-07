@@ -6,7 +6,7 @@ import { UpdateInstitutionSchema } from "@/modules/institution/dtos/update-insti
 /**
  * DELETE /api/institutions/:id deleting the institution by the id
  */
-export async function DELETE(_: Request, { params }: { params: { id: string } }) {
+export async function DELETE(_: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
 
@@ -28,7 +28,7 @@ export async function DELETE(_: Request, { params }: { params: { id: string } })
  * PATCH /api/institutions/:id
  * Updates an institution with the provided fields
  */
-export async function PATCH(request: Request, { params }: { params: { id: string } }) {
+export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const body = await request.json();

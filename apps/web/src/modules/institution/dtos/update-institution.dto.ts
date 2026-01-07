@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { FinancialInstitutionType } from "../enums/institution-type.enum";
 
 /**
  * Zod schema for updating an institution
@@ -7,7 +8,7 @@ import { z } from "zod";
 export const UpdateInstitutionSchema = z.object({
   name: z.string().optional(),
   cnpj: z.string().optional(),
-  type: z.enum(["BANK", "BROKERAGE"]).optional(),
+  type: z.enum(FinancialInstitutionType).optional(),
   site: z.string().nullable().optional(),
 });
 
