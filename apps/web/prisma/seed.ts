@@ -1,4 +1,5 @@
-import { PrismaClient, Role } from "@/generated/prisma/client";
+import { PrismaClient, Role } from "@prisma/client";
+
 import { SecurityService } from "@/shared/security/utils";
 import bcrypt from "bcryptjs";
 

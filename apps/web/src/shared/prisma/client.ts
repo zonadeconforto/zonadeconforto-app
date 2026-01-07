@@ -1,13 +1,13 @@
-import { PrismaClient } from '@/generated/prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 declare global {
-  var orm: PrismaClient | undefined
+  var orm: PrismaClient | undefined;
 }
 
 export const orm =
   global.orm ??
   new PrismaClient({
-    log: ['query', 'error', 'warn'],
-  })
+    log: ["query", "error", "warn"],
+  });
 
-if (process.env.NODE_ENV !== 'production') global.orm = orm
+if (process.env.NODE_ENV !== "production") global.orm = orm;

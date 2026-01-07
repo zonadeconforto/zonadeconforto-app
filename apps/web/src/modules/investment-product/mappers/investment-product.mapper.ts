@@ -4,7 +4,7 @@ import { CreateInvestmentProductDTO } from "@/modules/investment-product/dtos/cr
 import { UpdateInvestmentProductDTO } from "@/modules/investment-product/dtos/update-investment-product.dto";
 import { InvestmentProductUpdateModel } from "@/modules/investment-product/models/update-investment-product.model";
 import { InvestmentProductCreateModel } from "@/modules/investment-product/models/create-investment-product.model";
-import { InvestmentProduct } from "@/generated/prisma/client";
+import { InvestmentProduct } from "@prisma/client";
 
 /**
  * Mapper between DTOs, Domain Entities and Persistence Models.

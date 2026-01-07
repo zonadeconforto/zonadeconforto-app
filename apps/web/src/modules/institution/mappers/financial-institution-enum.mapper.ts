@@ -1,4 +1,4 @@
-import { FinancialInstitutionType as PrismaFinancialInstitutionType } from "@/generated/prisma/enums";
+import { FinancialInstitutionType as PrismaFinancialInstitutionType } from "@prisma/client";
 import { FinancialInstitutionType as TsFinancialInstitutionType } from "@/modules/institution/enums/institution-type.enum";
 
 export class FinancialInstitutionTypeMapper {

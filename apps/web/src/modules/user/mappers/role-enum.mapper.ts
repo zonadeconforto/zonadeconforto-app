@@ -1,8 +1,8 @@
 import { Role as DomainRole } from "../enums/role.enum";
-import { Role as PrismaRole } from "@/generated/prisma/enums";
+import { Role as PrismaRole } from "@prisma/client";
 
 export class RoleEnumMapper {
-    static fromORM(role: PrismaRole): DomainRole {
+  static fromORM(role: PrismaRole): DomainRole {
     switch (role) {
       case PrismaRole.ADMIN:
         return DomainRole.ADMIN;
