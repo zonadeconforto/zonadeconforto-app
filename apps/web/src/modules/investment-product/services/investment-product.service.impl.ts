@@ -4,7 +4,7 @@ import { CreateInvestmentProductDTO } from "@/modules/investment-product/dtos/cr
 import { UpdateInvestmentProductDTO } from "@/modules/investment-product/dtos/update-investment-product.dto";
 import { InvestmentProductEntity } from "@/modules/investment-product/entities/investment-product.entity";
 import { InvestmentProductMapper } from "@/modules/investment-product/mappers/investment-product.mapper";
-import { ValidationError } from "@/shared/utils/erros";
+import { NotFoundError, ValidationError } from "@/shared/utils/erros";
 
 /**
  * Concrete implementation of InvestmentProductService
@@ -26,7 +26,7 @@ export class InvestmentProductServiceImpl implements InvestmentProductService {
       );
     }
 
-    const model = InvestmentProductMapper.toModel(dto);
+    const model = InvestmentProductMapper.toCreateModel(dto);
     const created = await this.repo.create(model);
     return InvestmentProductMapper.toEntity(created);
   }
@@ -62,7 +62,7 @@ export class InvestmentProductServiceImpl implements InvestmentProductService {
       );
     }
 
-    const updates = InvestmentProductMapper.toPartialModel(dto);
+    const updates = InvestmentProductMapper.toUpdateModel(dto);
     const updated = await this.repo.update(id, updates);
     return InvestmentProductMapper.toEntity(updated);
   }
