@@ -1,0 +1,25 @@
+import { z } from "zod";
+
+export const OutputInvestmentProductSchema = z.object({
+  id: z.uuid(),
+  name: z.string(),
+  productType: z.string(),
+  financialInstitutionId: z.uuid(),
+  profitabilityType: z.string(),
+  profitabilityValue: z.number(),
+  indexer: z.string().nullable(),
+  termMonths: z.number(),
+  liquidity: z.string(),
+  graceDays: z.number().nullable(),
+  minValue: z.number(),
+  maxValue: z.number(),
+  startOfferDate: z.string().nullable(),
+  endOfferDate: z.string().nullable(),
+  adminFee: z.number().optional(),
+  incomeTax: z.string(),
+  description: z.string().nullable(),
+  status: z.string(),
+});
+
+export type OutputInvestmentProductDTO = z.infer<typeof OutputInvestmentProductSchema>;
+export const OutputInvestmentProductDTO = OutputInvestmentProductSchema;

@@ -3,7 +3,7 @@ import Footer from "@/shared/components/Footer";
 import Hero from "@/shared/components/Hero";
 import Navbar from "@/shared/components/Navbar";
 import SectionHowWorks from "@/shared/components/SectionHowWorks";
-import SectionContact from "@/shared/components/SectionContact";
+import SectionContact from "@/shared/components/ContactSection";
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 import { CreateInvestmentProductDTO } from "@/modules/investment-product/dtos/create-investment-product.dto";
 import { UpdateInvestmentProductDTO } from "@/modules/investment-product/dtos/update-investment-product.dto";
 import { InvestmentProductService } from "@/modules/investment-product/services/investment-product.service";
-import { OutputInvestmentProductDTO } from "../dtos/output-investiment-product.dto";
+import { OutputInvestmentProductDTO } from "../dtos/output-investment-product.dto";
 
 /**
  * Controller for InvestmentProduct HTTP handling.

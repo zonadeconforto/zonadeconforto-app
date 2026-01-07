@@ -42,9 +42,7 @@ export class InvestmentProductMapper {
   /**
    * Create DTO → Model
    */
-  static toCreateModel(
-    dto: CreateInvestmentProductDTO
-  ): InvestmentProductCreateModel {
+  static toCreateModel(dto: CreateInvestmentProductDTO): InvestmentProductCreateModel {
     return {
       name: dto.name,
       productType: dto.productType,
@@ -69,9 +67,7 @@ export class InvestmentProductMapper {
   /**
    * Update DTO → UpdateModel
    */
-  static toUpdateModel(
-    dto: UpdateInvestmentProductDTO
-  ): InvestmentProductUpdateModel {
+  static toUpdateModel(dto: UpdateInvestmentProductDTO): InvestmentProductUpdateModel {
     return { ...dto };
   }
 

@@ -59,13 +59,15 @@ export function useInstitutionForm() {
       return;
     }
 
+    const cleanCnpj = form.cnpj.replace(/\D/g, "");
     const result = await createInstitution({
       ...form,
+      cnpj: cleanCnpj,
       site: form.site || null,
     });
 
     if (result.success) {
-      setMessage("Institution successfully registered!");
+      setMessage("Instituição registrada com sucesso!");
       setForm({ name: "", cnpj: "", type: "BANK", site: "" });
     } else {
       setMessage(result.message || "Error registering institution.");

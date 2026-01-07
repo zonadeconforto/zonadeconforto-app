@@ -21,11 +21,13 @@ interface Option {
  * @property {boolean} [required] - Indicates whether selection is mandatory.
  */
 interface SelectInputProps {
-  label: string;
+  label?: string;
   value: string;
   onChange: (value: string) => void;
   options: Option[];
   required?: boolean;
+  backgroundColor?: string;
+  textColor?: string;
 }
 
 /**
@@ -39,7 +41,15 @@ interface SelectInputProps {
  * @param {SelectInputProps} props - Component properties.
  * @returns {JSX.Element} A styled and reusable select input component.
  */
-export function SelectInput({ label, value, onChange, options, required }: SelectInputProps) {
+export function SelectInput({
+  label,
+  value,
+  onChange,
+  options,
+  required,
+  backgroundColor,
+  textColor,
+}: SelectInputProps) {
   return (
     <div>
       <label className="block mb-1 font-medium">
@@ -48,6 +58,7 @@ export function SelectInput({ label, value, onChange, options, required }: Selec
 
       <select
         className="w-full p-2 rounded bg-zinc-900 border border-zinc-700"
+        style={{ backgroundColor: backgroundColor, color: textColor }}
         value={value}
         required={required}
         onChange={e => onChange(e.target.value)}

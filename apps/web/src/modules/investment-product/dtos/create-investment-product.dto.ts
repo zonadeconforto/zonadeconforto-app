@@ -12,7 +12,7 @@ export const CreateInvestmentProductSchema = z.object({
   indexer: z.enum(["CDI", "IPCA", "SELIC"]).optional(),
   termMonths: z.number().int().min(1),
   liquidity: z.enum(["DAILY", "MATURITY", "GRACE_PERIOD"]),
-  graceDays: z.number().int().min(0).optional(),
+  graceDays: z.number().int().min(0).optional().nullable(),
   minValue: z.number().nonnegative(),
   maxValue: z.number().nonnegative(),
   startOfferDate: z
