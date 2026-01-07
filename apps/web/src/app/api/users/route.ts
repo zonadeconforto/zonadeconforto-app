@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { userController } from "@/di";
-import { Role } from "@/generated/prisma/enums";
+import { Role } from "@prisma/enums";
 import { HttpException } from "../../core/exceptions/http-exception";
 
 /**

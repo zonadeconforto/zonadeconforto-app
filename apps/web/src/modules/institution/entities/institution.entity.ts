@@ -1,4 +1,4 @@
-import { FinancialInstitutionType } from "@/generated/prisma/enums";
+import { FinancialInstitutionType } from "@prisma/enums";
 
 export class InstitutionEntity {
   id!: string;

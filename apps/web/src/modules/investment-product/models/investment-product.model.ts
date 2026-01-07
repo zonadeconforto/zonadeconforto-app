@@ -5,7 +5,7 @@ import {
   LiquidityType,
   ProductType,
   ProfitabilityType,
-} from "@/generated/prisma/enums";
+} from "@prisma/enums";
 
 /**
  * Persistence model interface that matches Prisma model shape.
