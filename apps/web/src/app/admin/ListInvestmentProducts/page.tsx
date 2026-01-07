@@ -3,6 +3,7 @@
 import { useInvestmentProducts } from "@/hooks/useInvestmentProductForm";
 import Link from "next/link";
 import { useState } from "react";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 /**
  * Displays a table with all registered investment products.
@@ -63,7 +64,7 @@ export default function ListInvestmentProducts() {
 
                     <button
                       onClick={async () => {
-                        await fetch(`http://localhost:3000/api/investment-product?id=${deleteId}`, {
+                        await fetch(`${API_BASE_URL}/investment-product?id=${deleteId}`, {
                           method: "DELETE",
                         });
                         setDeleteId(null);
