@@ -21,7 +21,7 @@ import { HttpException } from "../../core/exceptions/http-exception";
  * 4. Catch and handle any unexpected errors gracefully.
  *
  * To test:
- *  curl -X POST NEXT_PUBLIC_API_BASE_URL/users \
+ *  curl -X POST http://localhost:3000/users \
  *    -H "Content-Type: application/json" \
  *    -d '{"name":"John Doe","email":"john@example.com","password":"secret123"}'
  */
