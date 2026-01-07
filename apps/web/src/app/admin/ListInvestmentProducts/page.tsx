@@ -63,7 +63,7 @@ export default function ListInvestmentProducts() {
 
                     <button
                       onClick={async () => {
-                        await fetch(`http://localhost:3000/api/investment-product?id=${deleteId}`, {
+                        await fetch(`NEXT_PUBLIC_API_BASE_URL/investment-product?id=${deleteId}`, {
                           method: "DELETE",
                         });
                         setDeleteId(null);

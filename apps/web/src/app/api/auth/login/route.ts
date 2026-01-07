@@ -18,7 +18,7 @@ import { HttpException } from "@/app/core/exceptions/http-exception";
  * 4. Catch domain or unexpected errors gracefully.
  *
  * To test:
- * curl -X POST http://localhost:3000/api/auth/login \
+ * curl -X POST NEXT_PUBLIC_API_BASE_URL/auth/login \
  *   -H "Content-Type: application/json" \
  *   -d '{"email":"john@example.com","password":"secret123"}'
  */

@@ -33,7 +33,7 @@ export default function InstitutionsPage() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch("http://localhost:3000/api/institutions", {
+        const res = await fetch("NEXT_PUBLIC_API_BASE_URL/institutions", {
           cache: "no-store",
         });
         const data = await res.json();
@@ -50,7 +50,7 @@ export default function InstitutionsPage() {
   async function handleDelete() {
     if (!deleteId) return;
 
-    const response = await fetch(`http://localhost:3000/api/institutions/${deleteId}`, {
+    const response = await fetch(`NEXT_PUBLIC_API_BASE_URL/institutions/${deleteId}`, {
       method: "DELETE",
     });
 
@@ -67,7 +67,7 @@ export default function InstitutionsPage() {
 
     if (!editData) return;
 
-    const res = await fetch(`http://localhost:3000/api/institutions/${editData.id}`, {
+    const res = await fetch(`NEXT_PUBLIC_API_BASE_URL/institutions/${editData.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editData),
