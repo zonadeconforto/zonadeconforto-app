@@ -31,15 +31,9 @@ export async function POST(request: Request) {
     console.error("Error during login:", error);
 
     if (error instanceof HttpException) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.status }
-      );
+      return NextResponse.json({ error: error.message }, { status: error.status });
     }
 
-    return NextResponse.json(
-      { error: "Unexpected server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Unexpected server error" }, { status: 500 });
   }
 }

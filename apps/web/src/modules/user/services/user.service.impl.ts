@@ -22,14 +22,14 @@ export class UserServiceImpl implements UserService {
     name: string,
     email: string,
     password: string,
-    role: Role = Role.CLIENT,
+    role: Role = Role.CLIENT
   ): Promise<string> {
     const existing = await this.repository.findByEmail(email);
     if (existing) {
       throw new HttpException("User already exists with this email.");
     }
-
-    const hashedPassword = await hash(password, SecurityService.BCRYPT_SALT_ROUNDS);
+    const salt = await SecurityService.getSalt();
+    const hashedPassword = await hash(password, salt);
     const entity = UserEntity.build(name, email, hashedPassword, role);
     return await this.repository.create(entity);
   }
