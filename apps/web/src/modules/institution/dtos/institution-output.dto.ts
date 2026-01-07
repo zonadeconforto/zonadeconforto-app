@@ -1,5 +1,5 @@
 // saídas
-import { FinancialInstitutionType } from "@prisma/enums";
+import { FinancialInstitutionType } from "@prisma/client";
 
 export interface InstitutionOutputDto {
   id: string;
