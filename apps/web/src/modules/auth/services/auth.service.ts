@@ -12,7 +12,7 @@ export class AuthService {
   constructor(
     private readonly repository: AuthRepository,
     private readonly tokenService: TokenService
-  ) { }
+  ) {}
 
   async login(dto: LoginDTO): Promise<LoggedUserDTO> {
     const user = await this.repository.findByEmail(dto.email);
@@ -27,7 +27,7 @@ export class AuthService {
     }
 
     // Generate JWT token using dependency
-    const token = this.tokenService.generateToken({
+    const token = await this.tokenService.generateToken({
       id: user.id,
       email: user.email,
       role: user.role,
