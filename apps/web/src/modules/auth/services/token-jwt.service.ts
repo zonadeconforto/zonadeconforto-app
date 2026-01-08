@@ -1,27 +1,31 @@
-import jwt, { JwtPayload, SignOptions, Secret } from "jsonwebtoken";
+import { SignJWT, jwtVerify, type JWTPayload } from "jose";
 import { TokenService } from "./token.service";
-import { type StringValue } from "ms";
 
 /**
- * JWT-based implementation of the TokenService interface.
+ * JWT-based implementation of the TokenService interface using JOSE.
+ * Compatible with Edge Runtime and Node.js.
  */
 export class TokenJwtService implements TokenService {
-  private readonly secret: Secret;
-  private readonly expiresIn: string | number;
+  private readonly secret: Uint8Array;
+  private readonly expiresIn: string;
 
-  constructor(secret: string, expiresIn: string | number = "7d") {
-    this.secret = secret;
+  constructor(secret: string, expiresIn: string = "7d") {
+    this.secret = new TextEncoder().encode(secret);
     this.expiresIn = expiresIn;
   }
 
-  generateToken(payload: object): string {
-    const options: SignOptions = { expiresIn: this.expiresIn as StringValue };
-    return jwt.sign(payload, this.secret, options);
+  async generateToken(payload: JWTPayload): Promise<string> {
+    return await new SignJWT(payload)
+      .setProtectedHeader({ alg: "HS256" })
+      .setIssuedAt()
+      .setExpirationTime(this.expiresIn)
+      .sign(this.secret);
   }
 
-  verifyToken(token: string): string | JwtPayload {
+  async verifyToken(token: string): Promise<JWTPayload> {
     try {
-      return jwt.verify(token, this.secret);
+      const { payload } = await jwtVerify(token, this.secret);
+      return payload;
     } catch {
       throw new Error("Invalid or expired token");
     }

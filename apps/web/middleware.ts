@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import jwt from "jsonwebtoken";
+import { jwtVerify } from "jose";
+import { SecurityService } from "@/shared/security/utils";
 
-const JWT_SECRET = process.env.JWT_SECRET || "changeme";
 const DEBUG = process.env.DEBUG === "true";
 
 export async function middleware(req: NextRequest) {
@@ -24,8 +24,26 @@ export async function middleware(req: NextRequest) {
   }
 
   try {
+    const cookieToken = req.cookies.get("token")?.value;
+    const authHeader = req.headers.get("authorization");
+    const headerToken = authHeader?.startsWith("Bearer ") ? authHeader.slice(7) : null;
+    const token = cookieToken || headerToken;
+    const secret = SecurityService.getJwtSecret();
+
+    if (DEBUG) {
+      console.log(
+        "⚠️ middleware",
+        "token:",
+        token,
+        "cookieToken:",
+        cookieToken,
+        "headerToken:",
+        headerToken
+      );
+    }
+
     // verifica token
-    const payload = jwt.verify(token, JWT_SECRET) as { role?: string; [k: string]: any };
+    const { payload } = await jwtVerify(token, secret);
     if (DEBUG) {
       console.log("⚠️ middleware", "payload:", payload);
     }
