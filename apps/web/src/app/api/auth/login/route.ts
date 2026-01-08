@@ -22,11 +22,32 @@ import { HttpException } from "@/app/core/exceptions/http-exception";
  *   -H "Content-Type: application/json" \
  *   -d '{"email":"john@example.com","password":"secret123"}'
  */
+const DEBUG = process.env.DEBUG === "true";
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const result = await authController.login(body);
-    return NextResponse.json(result, { status: 200 });
+    if (DEBUG) {
+      console.log("⚠️ login", "result:", result);
+    }
+
+    const response = NextResponse.json(result, { status: 200 });
+    if (DEBUG) {
+      console.log("⚠️ login", "response:", response);
+    }
+
+    response.cookies.set({
+      name: "token",
+      value: result.token,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+
+    return response;
   } catch (error: unknown) {
     console.error("Error during login:", error);
 
