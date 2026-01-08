@@ -9,8 +9,8 @@ export class TokenJwtService implements TokenService {
   private readonly secret: Uint8Array;
   private readonly expiresIn: string;
 
-  constructor(secret: string, expiresIn: string = "7d") {
-    this.secret = new TextEncoder().encode(secret);
+  constructor(secret: Uint8Array, expiresIn: string = "7d") {
+    this.secret = secret;
     this.expiresIn = expiresIn;
   }
 
