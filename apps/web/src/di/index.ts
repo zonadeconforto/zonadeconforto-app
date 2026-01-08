@@ -11,6 +11,7 @@ import { InstitutionDatasource } from "@/modules/institution/datasources/institu
 import { InvestmentProductController } from "@/modules/investment-product/controllers/investment-product.controller";
 import { InvestmentProductServiceImpl } from "@/modules/investment-product/services/investment-product.service.impl";
 import { InvestmentProductPrismaDatasource } from "@/modules/investment-product/datasources/investment-product.datasource";
+import { SecurityService } from "@/shared/security/utils";
 
 // USER DEPENDENCIES
 
@@ -21,10 +22,8 @@ export const userController = new UserController(service);
 // AUTH DEPENDENCIES
 
 const authDatasource = new AuthDatasource();
-const tokenService = new TokenJwtService(
-  process.env.JWT_SECRET_KEY || "dev_secret",
-  process.env.JWT_TOKEN_EXPIRATION_TIME || "7d"
-);
+const secret = SecurityService.getJwtSecret();
+const tokenService = new TokenJwtService(secret, process.env.JWT_TOKEN_EXPIRATION_TIME || "7d");
 const authService = new AuthService(authDatasource, tokenService);
 export const authController = new AuthController(authService);
 
