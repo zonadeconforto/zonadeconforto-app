@@ -1,6 +1,7 @@
 "use client";
 
 import { useInvestmentProducts } from "@/hooks/useInvestmentProductForm";
+import BackButton from "@/shared/components/BackButton";
 import Link from "next/link";
 import { useState } from "react";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -22,9 +23,11 @@ export default function ListInvestmentProducts() {
 
   return (
     <main className="p-6">
+      <BackButton></BackButton>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Produtos de Investimento</h1>
-
+        <div className="pl-20">
+          <h1 className="text-3xl font-bold">Produtos de Investimento</h1>
+        </div>
         <Link
           href="/admin/NewInvestmentProduct"
           className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"
@@ -35,7 +38,7 @@ export default function ListInvestmentProducts() {
 
       <div className="overflow-x-auto">
         <table className="w-full border border-zinc-700 rounded-lg">
-          <thead className="bg-zinc-800">
+          <thead>
             <tr className="bg-slate-300 text-left">
               <th className="p-3 border border-zinc-700">Nome</th>
               <th className="p-3 border border-zinc-700">Tipo</th>

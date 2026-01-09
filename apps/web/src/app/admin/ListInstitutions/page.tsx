@@ -1,5 +1,6 @@
 "use client";
 
+import BackButton from "@/shared/components/BackButton";
 import { SelectInput } from "@/shared/components/SelectInput";
 import { TextInput } from "@/shared/components/TextInput";
 import { useEffect, useState } from "react";
@@ -34,7 +35,7 @@ export default function InstitutionsPage() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/institutions`, {
+        const res = await fetch(`${API_BASE_URL}/institutions`, {
           cache: "no-store",
         });
         const data = await res.json();
@@ -51,7 +52,7 @@ export default function InstitutionsPage() {
   async function handleDelete() {
     if (!deleteId) return;
 
-    const response = await fetch(`${API_BASE_URL}/api/institutions/${deleteId}`, {
+    const response = await fetch(`${API_BASE_URL}/institutions/${deleteId}`, {
       method: "DELETE",
     });
 
@@ -68,7 +69,7 @@ export default function InstitutionsPage() {
 
     if (!editData) return;
 
-    const res = await fetch(`${API_BASE_URL}/api/institutions/${editData.id}`, {
+    const res = await fetch(`${API_BASE_URL}/institutions/${editData.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editData),
@@ -86,9 +87,11 @@ export default function InstitutionsPage() {
 
   return (
     <main className="p-6 space-y-6">
+      <BackButton></BackButton>
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Instituições Cadastradas</h1>
-
+        <div className="pl-20">
+          <h1 className="text-3xl font-bold ">Instituições Cadastradas</h1>
+        </div>
         <a
           href="/admin/NewInstitution"
           className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-xl  font-semibold"
