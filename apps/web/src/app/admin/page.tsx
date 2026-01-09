@@ -12,7 +12,7 @@ export default function AdminPage() {
     <div
       className="
         min-h-screen
-        bg-gradient-to-r
+        bg-linear-to-r
         from-blue-600
         to-purple-600
         flex

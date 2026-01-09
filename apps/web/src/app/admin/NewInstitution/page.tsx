@@ -1,14 +1,17 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { SelectInput } from "@/shared/components/SelectInput";
 import { TextInput } from "@/shared/components/TextInput";
 import { useInstitutionForm } from "@/hooks/useInstitutionForm";
+import BackButton from "@/shared/components/BackButton";
 
 export default function NewInstitutionPage() {
   const { form, message, updateField, submitForm } = useInstitutionForm();
+  const router = useRouter();
 
   return (
     <main className="p-6 max-w-xl mx-auto space-y-6">
+      <BackButton></BackButton>
       <center>
         <h1 className="text-3xl font-bold">Cadastrar Instituição</h1>
       </center>
@@ -20,7 +23,7 @@ export default function NewInstitutionPage() {
           label="Nome"
           value={form.name}
           required
-          placeholder="Ex: Itau"
+          placeholder="Ex: XP"
           onChange={v => updateField("name", v)}
         />
 
@@ -55,6 +58,7 @@ export default function NewInstitutionPage() {
           <p style={{ color: "white" }}>
             <button
               type="submit"
+              onClick={() => router.back()}
               className="w-full p-3 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold"
             >
               Cadastrar Instituição
