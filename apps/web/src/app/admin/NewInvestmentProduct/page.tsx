@@ -7,6 +7,7 @@ import { TextInput } from "@/shared/components/TextInput";
 import { SelectInput } from "@/shared/components/SelectInput";
 import { useRouter } from "next/navigation";
 import { investmentProductHttpService } from "@/services/investmentProductService";
+import BackButton from "@/shared/components/BackButton";
 
 /**
  * Page responsible for creating a new Investment Product.
@@ -72,6 +73,7 @@ export default function NewInvestmentProduct() {
 
   return (
     <main className="p-6 max-w-3xl mx-auto space-y-6">
+      <BackButton></BackButton>
       <h1 className="text-3xl font-bold text-center">Cadastrar Produto de Investimento</h1>
       {error && <p className="p-3 bg-red-900/30 border border-red-700 rounded-lg">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -220,6 +222,7 @@ export default function NewInvestmentProduct() {
 
         <button
           type="submit"
+          onClick={() => router.back()}
           disabled={loading}
           className="w-full p-3 bg-blue-600 hover:bg-blue-700 rounded-xl font-semibold disabled:opacity-60"
         >
