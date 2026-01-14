@@ -174,6 +174,16 @@ export default function NewInvestmentProduct() {
           ]}
         />
 
+        {/* if the liquidity is GRACE_PERIOD if the product have graceDays */}
+        {form.liquidity === "GRACE_PERIOD" && (
+          <TextInput
+            label="Dias de carência*"
+            type="number"
+            value={form.graceDays}
+            onChange={v => updateField("graceDays", Number(v))}
+          />
+        )}
+
         <TextInput
           label="Valor mínimo (R$) *"
           type="number"
