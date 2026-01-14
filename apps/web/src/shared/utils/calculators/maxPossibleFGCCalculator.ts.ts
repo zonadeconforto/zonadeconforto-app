@@ -1,5 +1,3 @@
-// calculators.ts
-
 /**
  * Converte taxa anual para mensal (juros compostos)
  */

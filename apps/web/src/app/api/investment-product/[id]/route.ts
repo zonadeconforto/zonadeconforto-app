@@ -7,7 +7,7 @@ const controller = investmentProductController;
 
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const { id } = await params; // ✅ resolve a Promise
+    const { id } = await params;
 
     if (!id) {
       return NextResponse.json({ error: "id is required" }, { status: 400 });

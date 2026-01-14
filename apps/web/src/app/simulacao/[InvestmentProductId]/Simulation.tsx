@@ -8,7 +8,7 @@ interface SimulationProps {
   product: {
     id: string;
     name: string;
-    profitabilityValue: number; // ex: 220
+    profitabilityValue: number;
     termMonths: number;
     minValue: number;
     maxValue: number;
@@ -19,7 +19,6 @@ export function Simulation({ product }: SimulationProps) {
   const [amount, setAmount] = useState<number>(product.minValue);
   const [months, setMonths] = useState<number>(product.termMonths);
 
-  // taxa anual REAL vinda da API (220% → 2.2)
   const annualRate = product.profitabilityValue / 100;
 
   const result = useMemo(() => {
@@ -34,7 +33,7 @@ export function Simulation({ product }: SimulationProps) {
     <div className="space-y-6">
       <h1 className="text-xl font-bold">Simulação – {product.name}</h1>
 
-      {/* Inputs */}
+      {/* Input */}
       <div className="flex gap-4">
         <div>
           <label className="block text-sm">Valor investido</label>
@@ -61,7 +60,7 @@ export function Simulation({ product }: SimulationProps) {
         </div>
       </div>
 
-      {/* Resultados */}
+      {/* Result */}
       <div className="space-y-1">
         <p>
           Valor investido: <strong>R$ {amount.toLocaleString("pt-BR")}</strong>
@@ -76,7 +75,6 @@ export function Simulation({ product }: SimulationProps) {
         </p>
       </div>
 
-      {/* Gráfico */}
       <InvestmentChart labels={result.labels} values={result.values} />
     </div>
   );

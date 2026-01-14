@@ -4,7 +4,7 @@ export function calculateInvestmentEvolution({
   months,
 }: {
   amount: number;
-  annualRate: number; // ex: 2.2 (220%)
+  annualRate: number;
   months: number;
 }) {
   if (!amount || !annualRate || !months) {
