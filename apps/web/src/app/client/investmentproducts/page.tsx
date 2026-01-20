@@ -67,7 +67,6 @@ export default function CdbListPage() {
         <div className="flex justify-center">
           <ContinueSimulationButton disabled={!selectedCdbId} onClick={handleContinue} />
         </div>
-        <InvestmentChart labels={[]} values={[]}></InvestmentChart>
       </main>
     </>
   );
