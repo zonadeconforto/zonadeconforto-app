@@ -23,6 +23,8 @@ export function CdbCard({
   selected,
   onSelect,
 }: CdbCardProps) {
+  const TaxaCDI2026 = 14.32;
+  const estimatedAnnualReturn = (profitabilityValue / 100) * TaxaCDI2026;
   return (
     <button
       onClick={() => onSelect(id)}
@@ -34,7 +36,7 @@ export function CdbCard({
         <div className="space-y-3">
           <h3 className="text-2xl font-semibold">{name}</h3>
 
-          <p className="text-xl text-gray-600">Rentabilidade: {profitabilityValue}% do CDI</p>
+          <p className="text-xl text-gray-600">Rentabilidade: {profitabilityValue}% ao ano</p>
 
           <p className="text-xl text-gray-600">Prazo: {termMonths} meses</p>
 
@@ -51,7 +53,7 @@ export function CdbCard({
 
         <div className="flex flex-col">
           <span className="text-green-600 font-bold text-3xl">
-            +{Math.floor(profitabilityValue / 15)}% a.a.
+            +{estimatedAnnualReturn.toFixed(2)}% a.a.
           </span>
 
           <span className="whitespace-pre-wrap text-lg">Rendimento estimado</span>

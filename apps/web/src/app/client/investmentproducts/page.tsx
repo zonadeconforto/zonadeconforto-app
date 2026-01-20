@@ -13,6 +13,7 @@ import {
   type Cdb,
 } from "@/modules/investment-product/mappers/investment-product-to-ui.mapper";
 import NavbarLogado from "@/shared/components/NavbarLogado";
+import { InvestmentChart } from "@/shared/components/InvestmentChart";
 
 export default function CdbListPage() {
   const router = useRouter();
@@ -66,6 +67,7 @@ export default function CdbListPage() {
         <div className="flex justify-center">
           <ContinueSimulationButton disabled={!selectedCdbId} onClick={handleContinue} />
         </div>
+        <InvestmentChart labels={[]} values={[]}></InvestmentChart>
       </main>
     </>
   );
