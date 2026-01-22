@@ -7,7 +7,7 @@ const BackButton = () => {
     <button
       onClick={() => router.back()}
       className="fixed left-6 top-6 z-50 flex items-center justify-center
-                w-12 h-47 bg-transparent hover:opacity-75 transition-opacity duration-200"
+                w-12 h-12 bg-transparent hover:opacity-75 transition-opacity duration-200"
       aria-label="Voltar"
     >
       <svg

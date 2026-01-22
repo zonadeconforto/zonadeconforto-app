@@ -47,10 +47,10 @@ export default function CdbListPage() {
       <NavbarLogado />
 
       <main className="max-w-5xl mx-auto px-4 py-20">
-        <h1 className="text-3xl font-bold text-center mt-10">CDBs Disponíveis</h1>
+        <h1 className="text-3xl font-bold text-center mt-10">Investimentos Disponíveis</h1>
 
         <p className="text-center text-gray-600 mt-2">
-          Selecione um CDB para simular seu investimento
+          Selecione um produto para simular o investimento.
         </p>
 
         <div className="mt-10 space-y-6">
