@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import SignupTerms from "./SignupTerms";
-import { TextInput } from "@/shared/components/TextInput";
-import { CpfInput } from "./CpfInput";
+import { TextInput } from "@/shared/utils/formatters/TextInput";
 import { PhoneInput } from "./PhoneInput";
-import { EmailInput } from "./EmailInput";
+import { EmailInput } from "../utils/formatters/EmailInput";
 import { removeMask } from "../utils/remove-mask";
 import { UserServiceImpl } from "@/modules/user/services/user.service.impl";
 import { userSignup } from "@/services/userService";
+import { CpfInput } from "../utils/formatters/CpfInput";
 
 /**
  * Signup form component
