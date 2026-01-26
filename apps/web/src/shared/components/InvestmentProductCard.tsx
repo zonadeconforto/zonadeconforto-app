@@ -36,7 +36,7 @@ export function CdbCard({
         <div className="space-y-3">
           <h3 className="text-2xl font-semibold">{name}</h3>
 
-          <p className="text-xl text-gray-600">Rentabilidade: {profitabilityValue}% ao ano</p>
+          <p className="text-xl text-gray-600">Rentabilidade: {profitabilityValue}% do CDI</p>
 
           <p className="text-xl text-gray-600">Prazo: {termMonths} meses</p>
 

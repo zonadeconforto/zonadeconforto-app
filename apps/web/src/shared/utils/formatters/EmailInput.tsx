@@ -1,4 +1,4 @@
-import { TextInput } from "@/shared/components/TextInput";
+import { TextInput } from "@/shared/utils/formatters/TextInput";
 
 interface EmailInputProps {
   value: string;

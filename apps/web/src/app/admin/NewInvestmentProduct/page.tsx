@@ -3,11 +3,12 @@
 import { useEffect } from "react";
 import { listInstitutions, Institution } from "@/services/institutionService";
 import { useState } from "react";
-import { TextInput } from "@/shared/components/TextInput";
+import { TextInput } from "@/shared/utils/formatters/TextInput";
 import { SelectInput } from "@/shared/components/SelectInput";
 import { useRouter } from "next/navigation";
 import { investmentProductHttpService } from "@/services/investmentProductService";
-import BackButton from "@/shared/components/BackButton";
+import BackButtonA from "@/shared/components/BackButtonA";
+import { CurrencyInput } from "@/shared/utils/formatters/CurrencyInput";
 
 /**
  * Page responsible for creating a new Investment Product.
@@ -73,7 +74,7 @@ export default function NewInvestmentProduct() {
 
   return (
     <main className="p-6 max-w-3xl mx-auto space-y-6">
-      <BackButton></BackButton>
+      <BackButtonA></BackButtonA>
       <h1 className="text-3xl font-bold text-center">Cadastrar Produto de Investimento</h1>
       {error && <p className="p-3 bg-red-900/30 border border-red-700 rounded-lg">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -183,20 +184,17 @@ export default function NewInvestmentProduct() {
             onChange={v => updateField("graceDays", Number(v))}
           />
         )}
+        <div className="space-y-1">
+          <label className="block text-sm font-medium text-gray-700">Valor mínimo (R$) *</label>
 
-        <TextInput
-          label="Valor mínimo (R$) *"
-          type="number"
-          value={form.minValue}
-          onChange={v => updateField("minValue", Number(v))}
-        />
+          <CurrencyInput value={form.minValue} onChange={v => updateField("minValue", v)} />
+        </div>
 
-        <TextInput
-          label="Valor máximo (R$) *"
-          type="number"
-          value={form.maxValue}
-          onChange={v => updateField("maxValue", Number(v))}
-        />
+        <div className="space-y-1">
+          <label className="block text-sm font-medium text-gray-700">Valor máximo (R$) *</label>
+
+          <CurrencyInput value={form.maxValue} onChange={v => updateField("maxValue", v)} />
+        </div>
 
         <TextInput
           label="Descrição"

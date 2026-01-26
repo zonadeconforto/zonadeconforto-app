@@ -1,8 +1,8 @@
 "use client";
 
-import BackButton from "@/shared/components/BackButton";
+import BackButtonA from "@/shared/components/BackButtonA";
 import { SelectInput } from "@/shared/components/SelectInput";
-import { TextInput } from "@/shared/components/TextInput";
+import { TextInput } from "@/shared/utils/formatters/TextInput";
 import { useEffect, useState } from "react";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -87,7 +87,7 @@ export default function InstitutionsPage() {
 
   return (
     <main className="p-6 space-y-6">
-      <BackButton></BackButton>
+      <BackButtonA></BackButtonA>
       <div className="flex items-center justify-between">
         <div className="pl-20">
           <h1 className="text-3xl font-bold ">Instituições Cadastradas</h1>

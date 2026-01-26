@@ -1,7 +1,7 @@
 "use client";
 
-import { TextInput } from "@/shared/components/TextInput";
-import { isValidCpf } from "../utils/validators/cpf";
+import { TextInput } from "@/shared/utils/formatters/TextInput";
+import { isValidCpf } from "../validators/cpf";
 
 /**
  * Props for CpfInput component.
