@@ -37,8 +37,21 @@ export function InvestmentChart({ labels, values }: InvestmentChartProps) {
         options={{
           responsive: true,
           maintainAspectRatio: false,
+
+          interaction: {
+            mode: "index",
+            intersect: false,
+          },
+
           plugins: {
             legend: { display: false },
+            tooltip: {
+              enabled: true,
+              callbacks: {
+                label: context =>
+                  `Valor do Investimento: R$ ${context.parsed.y.toLocaleString("pt-BR")}`,
+              },
+            },
           },
           scales: {
             y: {

@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 export const OutputInvestmentProductSchema = z.object({
   id: z.uuid(),
   name: z.string(),
@@ -19,6 +18,7 @@ export const OutputInvestmentProductSchema = z.object({
   incomeTax: z.string(),
   description: z.string().nullable(),
   status: z.string(),
+  site: z.string().nullable(),
 });
 
 export type OutputInvestmentProductDTO = z.infer<typeof OutputInvestmentProductSchema>;

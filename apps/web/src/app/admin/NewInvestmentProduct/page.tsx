@@ -64,7 +64,7 @@ export default function NewInvestmentProduct() {
         indexer: form.indexer || undefined,
       });
 
-      router.push("admin/ListInvestmentProducts");
+      router.push("./ListInvestmentProducts");
     } catch (err) {
       setError("Failed to create investment product");
     } finally {

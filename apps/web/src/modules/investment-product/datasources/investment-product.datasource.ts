@@ -21,13 +21,20 @@ export class InvestmentProductPrismaDatasource implements InvestmentProductRepos
   async findById(id: string): Promise<InvestmentProductModel | null> {
     const found = await orm.investmentProduct.findUnique({
       where: { id },
+      include: {
+        financialInstitution: true,
+      },
     });
 
+    console.log("PRISMA:", found);
     return found ? InvestmentProductMapper.toModel(found) : null;
   }
 
   async findAll(): Promise<InvestmentProductModel[]> {
     const list = await orm.investmentProduct.findMany({
+      include: {
+        financialInstitution: true,
+      },
       orderBy: { createdAt: "desc" },
     });
 
