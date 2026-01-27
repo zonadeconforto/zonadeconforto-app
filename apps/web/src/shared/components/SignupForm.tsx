@@ -61,7 +61,7 @@ export default function SignupForm() {
         placeholder="Digite seu nome completo"
         required
       />
-      <EmailInput value={email} onChange={setEmail} required />;
+      <EmailInput value={email} onChange={setEmail} required />
       <CpfInput value={cpf} onChange={setCpf} required />
       <PhoneInput value={phone} onChange={setPhone} required />
       <TextInput

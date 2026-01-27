@@ -36,6 +36,7 @@ export class InvestmentProductMapper {
       status: prisma.status,
       createdAt: prisma.createdAt,
       updatedAt: prisma.updatedAt,
+      site: prisma.financialInstitution?.site ?? null,
     };
   }
 

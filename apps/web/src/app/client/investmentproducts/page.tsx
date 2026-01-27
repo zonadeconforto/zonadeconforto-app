@@ -3,17 +3,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { CdbCard } from "@/shared/components/InvestmentProductCard";
 import { ContinueSimulationButton } from "@/shared/components/ContinueSimulationButton";
-
 import { investmentProductHttpService } from "@/services/investmentProductService";
 import {
   investmentProductToUi,
   type Cdb,
 } from "@/modules/investment-product/mappers/investment-product-to-ui.mapper";
-import NavbarLogado from "@/shared/components/NavbarLogado";
-import { InvestmentChart } from "@/shared/components/InvestmentChart";
+import NavbarLogado from "@/shared/components/NavbarLog";
 
 export default function CdbListPage() {
   const router = useRouter();

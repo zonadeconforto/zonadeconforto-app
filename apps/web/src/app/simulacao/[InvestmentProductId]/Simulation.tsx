@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { InvestmentChart } from "@/shared/components/InvestmentChart";
 import { calculateInvestmentEvolution } from "@/shared/utils/calculators/investmentCalculator";
-import Navbar from "@/shared/components/NavbarLogado";
+import Navbar from "@/shared/components/NavbarLog";
 import BackButton from "@/shared/components/BackButton";
 import { CurrencyInput } from "@/shared/utils/formatters/CurrencyInput";
 import { FGC_LIMIT } from "@/hooks/useSimulationForm";
@@ -15,6 +15,7 @@ interface SimulationProps {
     termMonths: number;
     minValue: number;
     maxValue: number;
+    site?: string | null;
   };
 }
 
@@ -22,9 +23,8 @@ export function Simulation({ product }: SimulationProps) {
   const [amount, setAmount] = useState<number>(product.minValue);
   const [months, setMonths] = useState<number>(product.termMonths);
   const [showResult, setShowResult] = useState(false);
-
   const annualRate = product.profitabilityValue / 100;
-
+  console.log(product.site);
   const result = useMemo(() => {
     return calculateInvestmentEvolution({
       amount,
@@ -37,7 +37,6 @@ export function Simulation({ product }: SimulationProps) {
    * check if the value is below the minimum value
    */
   const belowMinValue = amount < product.minValue;
-
   const exceedsFGC = result.finalValue > FGC_LIMIT;
 
   /**
@@ -107,18 +106,14 @@ export function Simulation({ product }: SimulationProps) {
                 </div>
               )}
 
-              {/* 🟡 ALERTA FGC */}
+              {/* 🟡 fgc alert */}
               {exceedsFGC && (
                 <div className="mt-4 rounded-md border border-yellow-400 bg-yellow-50 p-4 text-sm text-yellow-900">
                   <p className="font-semibold">⚠️ Atenção: Valor acima do limite do FGC!</p>
 
                   <p className="mt-1">
-                    O FGC protege até <strong>R$ {FGC_LIMIT.toLocaleString("pt-BR")}</strong>.
-                  </p>
-
-                  <p className="mt-1">
-                    No vencimento, o valor estimado será{" "}
-                    <strong>R$ {result.finalValue.toLocaleString("pt-BR")}</strong>.
+                    O FGC protege <strong>R$ {maxSafeAmount.toLocaleString("pt-BR")}</strong> nesse
+                    investimento.
                   </p>
 
                   <button
@@ -163,13 +158,11 @@ export function Simulation({ product }: SimulationProps) {
         </div>
 
         {/* Results */}
-        {showResult && (
+        {showResult && !belowMinValue && (
           <div className="space-y-10">
             <h2 className="text-lg font-semibold">Projeção de Rendimentos</h2>
-
             <InvestmentChart labels={result.labels} values={result.values} />
-
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-7">
               <div className="rounded-lg bg-green-50 p-5 text-center">
                 <p className="text-sm text-gray-500">Valor Investido</p>
                 <p className="text-xl font-bold text-green-700">
@@ -191,6 +184,23 @@ export function Simulation({ product }: SimulationProps) {
                 </p>
               </div>
             </div>
+            {/* Button */}
+            {showResult && !belowMinValue && (
+              <a href={product.site}>
+                <button
+                  disabled={belowMinValue}
+                  className={`w-full rounded-md py-3 text-base font-semibold transition
+              ${
+                belowMinValue
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-amber-400 hover:bg-amber-500 text-white"
+              }
+            `}
+                >
+                  Ver Investimento
+                </button>
+              </a>
+            )}
           </div>
         )}
       </div>

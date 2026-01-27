@@ -32,4 +32,5 @@ export interface InvestmentProductModel {
   status: InvestmentProductStatus;
   createdAt: Date;
   updatedAt: Date;
+  site?: string | null;
 }
