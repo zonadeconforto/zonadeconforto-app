@@ -24,7 +24,7 @@ export function Simulation({ product }: SimulationProps) {
   const [months, setMonths] = useState<number>(product.termMonths);
   const [showResult, setShowResult] = useState(false);
   const annualRate = product.profitabilityValue / 100;
-  console.log(product.site);
+
   const result = useMemo(() => {
     return calculateInvestmentEvolution({
       amount,
