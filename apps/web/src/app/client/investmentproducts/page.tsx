@@ -10,7 +10,7 @@ import {
   investmentProductToUi,
   type Cdb,
 } from "@/modules/investment-product/mappers/investment-product-to-ui.mapper";
-import NavbarLogado from "@/shared/components/NavbarLog";
+import NavbarLogado from "@/shared/components/NavbarLogado";
 
 export default function CdbListPage() {
   const router = useRouter();
