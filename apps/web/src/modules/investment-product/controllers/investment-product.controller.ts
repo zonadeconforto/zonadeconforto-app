@@ -10,10 +10,8 @@ import { OutputInvestmentProductDTO } from "../dtos/output-investment-product.dt
 export class InvestmentProductController {
   constructor(private readonly service: InvestmentProductService) {}
   async create(payload: unknown): Promise<OutputInvestmentProductDTO> {
-    console.log("cheguei até aqui");
     const dto = CreateInvestmentProductDTO.parse(payload);
     const entity = await this.service.create(dto);
-    console.log("DTO:    ", dto);
     return OutputInvestmentProductDTO.parse(entity);
   }
 
