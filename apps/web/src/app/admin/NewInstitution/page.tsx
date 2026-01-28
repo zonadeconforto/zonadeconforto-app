@@ -1,9 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { SelectInput } from "@/shared/components/SelectInput";
-import { TextInput } from "@/shared/components/TextInput";
+import { TextInput } from "@/shared/utils/formatters/TextInput";
 import { useInstitutionForm } from "@/hooks/useInstitutionForm";
-import BackButton from "@/shared/components/BackButton";
+import BackButtonA from "@/shared/components/BackButtonA";
 
 export default function NewInstitutionPage() {
   const { form, message, updateField, submitForm } = useInstitutionForm();
@@ -11,7 +11,7 @@ export default function NewInstitutionPage() {
 
   return (
     <main className="p-6 max-w-xl mx-auto space-y-6">
-      <BackButton></BackButton>
+      <BackButtonA></BackButtonA>
       <center>
         <h1 className="text-3xl font-bold">Cadastrar Instituição</h1>
       </center>

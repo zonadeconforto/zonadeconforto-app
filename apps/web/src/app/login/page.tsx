@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { AppRouteApiUrl } from "@/shared/strings/app-route-api-url";
-import { TextInput } from "@/shared/components/TextInput";
+import { TextInput } from "@/shared/utils/formatters/TextInput";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");

@@ -4,12 +4,29 @@ import { jwtVerify } from "jose";
 import { SecurityService } from "@/shared/security/utils";
 
 const DEBUG = process.env.DEBUG === "true";
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS ?? "https://zonadeconforto.com,zonadeconforto.com,http://zonadeconforto.com")
+  .split(",")
+  .map((o) => o.trim());
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  const origin = req.headers.get("origin");
+  const res = NextResponse.next();
+
+  // ===== CORS =====
+  if (origin && ALLOWED_ORIGINS.includes(origin)) {
+    res.headers.set("Access-Control-Allow-Origin", origin);
+    res.headers.set("Access-Control-Allow-Credentials", "true");
+  }
+  res.headers.set("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS");
+  res.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (req.method === "OPTIONS") {
+    return new NextResponse(null, { status: 204, headers: res.headers });
+  }
 
   if (!pathname.startsWith("/admin")) {
-    return NextResponse.next();
+    return res;
   }
 
   const token = req.cookies.get("token")?.value;
@@ -18,7 +35,6 @@ export async function middleware(req: NextRequest) {
   }
 
   if (!token) {
-    // redireciona pra login
     const loginUrl = new URL("/login", req.url);
     return NextResponse.redirect(loginUrl);
   }
@@ -42,7 +58,6 @@ export async function middleware(req: NextRequest) {
       );
     }
 
-    // verifica token
     const { payload } = await jwtVerify(token, secret);
     if (DEBUG) {
       console.log("⚠️ middleware", "payload:", payload);
@@ -52,7 +67,6 @@ export async function middleware(req: NextRequest) {
       if (DEBUG) {
         console.log("⚠️ middleware if (payload.role !== 'ADMIN') ", payload.role);
       }
-      // não autorizado
       const forbiddenUrl = new URL("/", req.url);
       return NextResponse.redirect(forbiddenUrl);
     }
@@ -60,8 +74,7 @@ export async function middleware(req: NextRequest) {
     if (DEBUG) {
       console.log("⚠️ middleware else - if (payload.role !== 'ADMIN') ", payload.role);
     }
-    // autorizado
-    return NextResponse.next();
+    return res;
   } catch (err) {
     console.error("⚠️ middleware catch", err);
     const loginUrl = new URL("/login", req.url);
@@ -69,7 +82,6 @@ export async function middleware(req: NextRequest) {
   }
 }
 
-// configurar as rotas do admin
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/api/:path*"],
 };

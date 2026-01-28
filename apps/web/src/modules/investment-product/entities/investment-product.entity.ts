@@ -23,6 +23,7 @@ export type InvestmentProductProps = {
   status?: string;
   createdAt?: Date;
   updatedAt?: Date;
+  site?: string;
 };
 
 export class InvestmentProductEntity {
@@ -46,7 +47,7 @@ export class InvestmentProductEntity {
   readonly status?: string;
   readonly createdAt?: Date;
   readonly updatedAt?: Date;
-
+  readonly site?: string;
   /**
    * Entity constructor
    */
@@ -71,5 +72,6 @@ export class InvestmentProductEntity {
     this.status = props.status ?? "ACTIVE";
     this.createdAt = props.createdAt;
     this.updatedAt = props.updatedAt;
+    this.site = props.site;
   }
 }

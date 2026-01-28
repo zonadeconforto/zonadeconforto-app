@@ -12,6 +12,7 @@ export interface Cdb {
   liquidity: string;
   minValue: number;
   maxValue: number;
+  site?: string | null;
 }
 
 export function investmentProductToUi(product: OutputInvestmentProductDTO): Cdb {
@@ -23,5 +24,6 @@ export function investmentProductToUi(product: OutputInvestmentProductDTO): Cdb 
     liquidity: product.liquidity === "MATURITY" ? "No vencimento" : "Liquidez diária",
     minValue: product.minValue,
     maxValue: product.maxValue,
+    site: product.site,
   };
 }

@@ -7,6 +7,7 @@ interface TextInputProps {
   label?: string;
   value: string | number;
   onChange: (value: string) => void;
+  onFocus?: (value: number) => void;
   placeholder?: string;
   required?: boolean;
   mask?: string;
@@ -23,6 +24,7 @@ export function TextInput({
   label,
   value,
   onChange,
+  onFocus,
   placeholder,
   required,
   mask,
@@ -47,6 +49,7 @@ export function TextInput({
         placeholder={placeholder}
         required={required}
         onChange={e => onChange(e.target.value)}
+        onFocus={e => e.target.select()}
         className={`text-black w-full p-2 rounded-lg border focus:ring-2 focus:ring-blue-500
           ${error ? "border-red-500" : "border-gray-300"}
         `}

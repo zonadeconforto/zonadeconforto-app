@@ -1,7 +1,7 @@
 "use client";
 
 import { useInvestmentProducts } from "@/hooks/useInvestmentProductForm";
-import BackButton from "@/shared/components/BackButton";
+import BackButtonA from "@/shared/components/BackButtonA";
 import Link from "next/link";
 import { useState } from "react";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -23,7 +23,7 @@ export default function ListInvestmentProducts() {
 
   return (
     <main className="p-6">
-      <BackButton></BackButton>
+      <BackButtonA></BackButtonA>
       <div className="flex justify-between items-center mb-6">
         <div className="pl-20">
           <h1 className="text-3xl font-bold">Produtos de Investimento</h1>
