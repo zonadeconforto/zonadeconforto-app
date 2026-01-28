@@ -14,7 +14,7 @@ export class InvestmentProductMapper {
   /**
    * Prisma → Model
    */
-  static toModel(prisma: InvestmentProduct): InvestmentProductModel {
+  static toModel(prisma: InvestmentProduct & { financialInstitution? : { site: string | null } }): InvestmentProductModel {
     return {
       id: prisma.id,
       name: prisma.name,
