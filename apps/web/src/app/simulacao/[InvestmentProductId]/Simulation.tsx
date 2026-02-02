@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { InvestmentChart } from "@/shared/components/InvestmentChart";
 import { calculateInvestmentEvolution } from "@/shared/utils/calculators/investmentCalculator";
-import Navbar from "@/shared/components/NavbarLogado";
+import Navbar from "@/shared/components/NavbarLog";
 import BackButton from "@/shared/components/BackButton";
 import { CurrencyInput } from "@/shared/utils/formatters/CurrencyInput";
 import { FGC_LIMIT } from "@/hooks/useSimulationForm";

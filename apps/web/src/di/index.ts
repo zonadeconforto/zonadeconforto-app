@@ -12,20 +12,38 @@ import { InvestmentProductController } from "@/modules/investment-product/contro
 import { InvestmentProductServiceImpl } from "@/modules/investment-product/services/investment-product.service.impl";
 import { InvestmentProductPrismaDatasource } from "@/modules/investment-product/datasources/investment-product.datasource";
 import { SecurityService } from "@/shared/security/utils";
+/**
+ * Application Dependency Injection Container.
+ *
+ * Responsible for instantiating and wiring all controllers,
+ * services, and datasources with their required dependencies.
+ *
+ * This file ensures shared instances for example TokenService
+ * are reused across modules.
+ * NOTE:
+ * UserController depends on TokenService for JWT validation.
+ * For this reason, its instantiation must happen after
+ * the Auth dependencies are initialized.
+ */
 
 // USER DEPENDENCIES
 
 const datasource = new UserDatasource();
 const service = new UserServiceImpl(datasource);
-export const userController = new UserController(service);
 
 // AUTH DEPENDENCIES
 
 const authDatasource = new AuthDatasource();
 const secret = SecurityService.getJwtSecret();
+// Shared TokenService instance used by both Auth and User modules
 const tokenService = new TokenJwtService(secret, process.env.JWT_TOKEN_EXPIRATION_TIME || "7d");
 const authService = new AuthService(authDatasource, tokenService);
 export const authController = new AuthController(authService);
+/**
+Uses the same TokenService instance as AuthService
+to ensure JWT generation and validation share the same secret.
+*/
+export const userController = new UserController(service, tokenService);
 
 // INSTITUTION DEPENDENCIES
 
