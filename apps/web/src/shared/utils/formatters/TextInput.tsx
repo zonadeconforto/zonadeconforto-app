@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useMask } from "@react-input/mask";
 import { Eye, EyeOff } from "lucide-react";
-import { a } from "framer-motion/client";
 
 interface TextInputProps {
   label?: string;

@@ -75,7 +75,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-r from-blue-600 to-purple-600 pt-28 pb-20 px-4">
+    <main className="min-h-screen bg-gradient-to-r pt-28 pb-20 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="flex items-center justify-between mb-8">

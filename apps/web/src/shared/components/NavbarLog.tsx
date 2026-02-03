@@ -1,3 +1,4 @@
+import LogoutButton from "./LogoutButton";
 import { UserIcon } from "./UserIcon";
 
 export default function NavbarLog() {
@@ -29,6 +30,7 @@ export default function NavbarLog() {
         <a href="./profile">
           <UserIcon />
         </a>
+        <LogoutButton label="Sair" width="95px" height="37px" />
       </div>
     </nav>
   );
