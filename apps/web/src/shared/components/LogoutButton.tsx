@@ -11,7 +11,7 @@ interface LogoutButtonProps {
 }
 
 export default function LogoutButton({
-  className,
+  className = "bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition cursor-pointer active:scale-95",
   label = "Sair da conta",
   width = "160px",
   height = "40px",
@@ -34,15 +34,7 @@ export default function LogoutButton({
           width,
           height,
         }}
-        className="
-    bg-red-600 hover:bg-red-700
-    text-white
-    rounded-lg
-    font-semibold
-    transition
-    cursor-pointer
-    active:scale-95
-  "
+        className={className}
       >
         {label}
       </button>

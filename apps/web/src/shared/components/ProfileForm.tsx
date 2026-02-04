@@ -124,7 +124,7 @@ export default function ProfileForm({ user }: { user: User }) {
             Salvar
           </button>
         </div>
-        <LogoutButton className="-translate-y-15" />
+        <LogoutButton className="-translate-y-15 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition cursor-pointer active:scale-95" />
 
         {/* confirmation modal */}
         {isClicked && (
