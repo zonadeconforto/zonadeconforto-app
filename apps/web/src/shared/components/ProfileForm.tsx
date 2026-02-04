@@ -70,8 +70,7 @@ export default function ProfileForm({ user }: { user: User }) {
       alert("Erro ao salvar.");
     }
   }
-
-  function logout(_event: MouseEvent<HTMLButtonElement, MouseEvent>): void {
+  function logout(): void {
     localStorage.removeItem("user");
     router.push("/login");
     setIsLoggedIn(!isLoggedIn);
