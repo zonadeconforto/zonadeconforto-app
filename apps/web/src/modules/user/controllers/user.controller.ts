@@ -25,6 +25,25 @@ export class UserController {
 
     return await this.userService.findById(userId);
   }
+  async listAll(request: Request) {
+    const userId = await this.getUserIdFromRequest(request);
+
+    if (!userId) {
+      throw new HttpException("Unauthorized", 401);
+    }
+
+    const user = await this.userService.findById(userId);
+
+    if (!user) {
+      throw new HttpException("Unauthorized", 401);
+    }
+
+    if (user.role !== "ADMIN") {
+      throw new HttpException("Forbidden", 403);
+    }
+
+    return this.userService.listAll();
+  }
 
   async update(req: Request, data: UpdateUserDTO) {
     const userId = await this.getUserIdFromRequest(req);
@@ -37,7 +56,14 @@ export class UserController {
   }
 
   async create(data: CreateUserDTO): Promise<string> {
-    return await this.userService.createUser(data.name, data.email, data.password, data.role);
+    return await this.userService.createUser(
+      data.name,
+      data.email,
+      data.password,
+      data.role,
+      data.phone,
+      data.cpf
+    );
   }
   /**
    * Extracts and validates the authenticated user ID from the request.

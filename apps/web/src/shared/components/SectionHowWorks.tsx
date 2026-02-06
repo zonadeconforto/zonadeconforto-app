@@ -30,7 +30,7 @@ export default function SectionHowWorks() {
   ];
 
   return (
-    <section className="py-24 bg-gray-50 text-center">
+    <section id="SectionHowWorks" className="py-24 bg-gray-50 text-center">
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-4xl font-bold mb-4 text-gray-900">Como Funciona</h2>
         <p className="text-lg text-gray-600 mb-16">

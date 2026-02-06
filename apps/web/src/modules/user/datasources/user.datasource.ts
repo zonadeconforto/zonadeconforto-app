@@ -27,6 +27,9 @@ export class UserDatasource implements UserRepository {
         name: user.name,
         email: user.email,
         passwordHash: user.passwordHash,
+        phone: user.phone,
+        cpf: user.cpf,
+        role: user.role,
       },
     });
     return created.id;
@@ -50,5 +53,12 @@ export class UserDatasource implements UserRepository {
     if (!user) return null;
 
     return UserMapper.toEntity(user);
+  }
+  async findAll(): Promise<UserEntity[]> {
+    const users = await orm.user.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+
+    return users.map(UserMapper.toEntity);
   }
 }

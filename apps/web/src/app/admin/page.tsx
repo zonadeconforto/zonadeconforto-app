@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-
-import { Building2, Layers } from "lucide-react";
+import { Building2, Layers, LayoutDashboardIcon } from "lucide-react";
 import { AdminCard } from "@/shared/components/AdminCard";
 
 export default function AdminPage() {
@@ -23,7 +22,6 @@ export default function AdminPage() {
       "
     >
       <h1 className="text-white text-4xl font-bold mb-12">Administrador</h1>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <AdminCard
           title="Produtos de Investimento"
@@ -31,12 +29,18 @@ export default function AdminPage() {
           icon={<Layers size={42} />}
           onClick={() => router.push("/admin/ListInvestmentProducts")}
         />
-
         <AdminCard
           title="Instituições"
           description="Cadestre e gerencie as instituições financeiras."
           icon={<Building2 size={42} />}
           onClick={() => router.push("/admin/ListInstitutions")}
+        />
+        {/* <div className="flex min-h-[70vh] w-full items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-20"> */}
+        <AdminCard
+          title="Usuários"
+          description="Cadestre e gerencie as instituições financeiras."
+          icon={<LayoutDashboardIcon size={42} />}
+          onClick={() => router.push("/admin/ListUsers")}
         />
       </div>
     </div>

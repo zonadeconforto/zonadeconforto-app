@@ -8,6 +8,8 @@ export const CreateUserSchema = z.object({
   name: z.string().min(2, "Name must have at least 2 characters"),
   email: z.email("Invalid email format"),
   password: z.string().min(6, "Password must have at least 6 characters"),
+  phone: z.string().optional(),
+  cpf: z.string().optional(),
   role: z.enum(Role).optional().default(Role.CLIENT),
 });
 

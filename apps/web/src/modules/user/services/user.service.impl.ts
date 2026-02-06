@@ -32,7 +32,9 @@ export class UserServiceImpl implements UserService {
     name: string,
     email: string,
     password: string,
-    role: Role = Role.CLIENT
+    role: Role = Role.CLIENT,
+    phone?: string,
+    cpf?: string
   ): Promise<string> {
     const existing = await this.repository.findByEmail(email);
 
@@ -43,7 +45,7 @@ export class UserServiceImpl implements UserService {
     const salt = await SecurityService.getSalt();
     const hashedPassword = await hash(password, salt);
 
-    const entity = UserEntity.build(name, email, hashedPassword, role);
+    const entity = UserEntity.build(name, email, hashedPassword, role, phone ?? null, cpf ?? null);
 
     return await this.repository.create(entity);
   }
@@ -65,5 +67,8 @@ export class UserServiceImpl implements UserService {
     }
 
     return user;
+  }
+  async listAll(): Promise<UserEntity[]> {
+    return this.repository.findAll();
   }
 }

@@ -10,9 +10,11 @@ export class UserEntity {
     public readonly name: string,
     public readonly email: string,
     public readonly passwordHash: string,
+    public readonly phone: string | null,
+    public readonly cpf: string | null,
     public readonly role: Role,
     public readonly createdAt: Date,
-    public readonly updatedAt: Date | null,
+    public readonly updatedAt: Date | null
   ) {}
 
   /**
@@ -22,13 +24,17 @@ export class UserEntity {
     name: string,
     email: string,
     passwordHash: string,
-    role: Role = Role.CLIENT
-  ): UserEntity {
+    role: Role = Role.CLIENT,
+    phone: string | null = null,
+    cpf: string | null = null
+  ) {
     return new UserEntity(
       null,
       name,
       email,
       passwordHash,
+      phone,
+      cpf,
       role,
       new Date(),
       new Date()

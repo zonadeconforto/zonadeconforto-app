@@ -7,4 +7,5 @@ export interface UserRepository {
   list(): Promise<UserEntity[]>;
   findById(id: string): Promise<UserEntity | null>;
   update(id: string, data: UpdateUserDTO): Promise<UserEntity> | null;
+  findAll(): Promise<UserEntity[]>;
 }

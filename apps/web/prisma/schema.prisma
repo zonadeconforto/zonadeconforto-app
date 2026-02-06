@@ -35,6 +35,8 @@ model User {
   name         String
   email        String   @unique
   passwordHash String
+  phone        String?
+  cpf          String?
   role         Role     @default(CLIENT)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

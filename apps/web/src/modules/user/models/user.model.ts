@@ -5,6 +5,8 @@ export interface UserModel {
   name: string;
   email: string;
   passwordHash: string;
+  phone: string;
+  cpf: string;
   role: Role;
   createdAt: Date;
   updatedAt: Date | null;

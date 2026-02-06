@@ -14,7 +14,14 @@ export interface UserService {
    * Creates a new user.
    * Ensures email uniqueness and hashes the password.
    */
-  createUser(name: string, email: string, password: string, role: Role): Promise<string>;
+  createUser(
+    name: string,
+    email: string,
+    password: string,
+    role: Role,
+    phone?: string,
+    cpf?: string
+  ): Promise<string>;
 
   /**
    * Retrieves a user by its unique identifier.
@@ -26,4 +33,5 @@ export interface UserService {
    * @throws HttpException if user does not exist
    */
   findById(id: string): Promise<UserEntity>;
+  listAll(): Promise<UserEntity[]>;
 }
