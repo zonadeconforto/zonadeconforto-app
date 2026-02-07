@@ -34,7 +34,7 @@ interface User {
   cpf: string | null;
   createdAt: string;
 }
-export default function InstitutionsPage() {
+export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -80,12 +80,6 @@ export default function InstitutionsPage() {
         <div className="pl-20">
           <h1 className="text-3xl font-bold ">Usuários</h1>
         </div>
-        <a
-          href="/admin/NewInstitution"
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-xl  font-semibold"
-        >
-          + Nova Instituição
-        </a>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse rounded-lg overflow-hidden">
