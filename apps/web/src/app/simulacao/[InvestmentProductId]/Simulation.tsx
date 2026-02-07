@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { InvestmentChart } from "@/shared/components/InvestmentChart";
 import { calculateInvestmentEvolution } from "@/shared/utils/calculators/investmentCalculator";
-import Navbar from "@/shared/components/NavbarLogado";
+import Navbar from "@/shared/components/NavbarLog";
 import BackButton from "@/shared/components/BackButton";
 import { CurrencyInput } from "@/shared/utils/formatters/CurrencyInput";
 import { FGC_LIMIT } from "@/hooks/useSimulationForm";
@@ -52,7 +52,7 @@ export function Simulation({ product }: SimulationProps) {
   return (
     <div>
       <Navbar />
-      <BackButton />
+      <BackButton x="left-6" y="top-4" />
 
       <div className="mx-auto max-w-5xl px-4 pt-24 space-y-10">
         {/* Title */}
@@ -66,7 +66,7 @@ export function Simulation({ product }: SimulationProps) {
         <div className="mx-auto max-w-3xl rounded-lg bg-blue-50 px-6 py-4 text-blue-700 text-lg">
           <strong>Produto Selecionado:</strong>
           <p>{product.name}</p>
-          <p>Rentabilidade: {product.profitabilityValue}% a.a.</p>
+          <p>Rentabilidade: {product.profitabilityValue}% do CDI</p>
           <p>Prazo sugerido: {product.termMonths} meses</p>
         </div>
 

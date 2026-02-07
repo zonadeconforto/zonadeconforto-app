@@ -12,6 +12,8 @@ export class UserMapper {
       model.name,
       model.email,
       model.passwordHash,
+      model.phone,
+      model.cpf,
       RoleEnumMapper.fromORM(model.role),
       model.createdAt,
       model.updatedAt

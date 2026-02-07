@@ -12,7 +12,7 @@ export default function Navbar() {
 
       <ul className="hidden md:flex items-center gap-8 text-gray-700">
         <li>
-          <a href="#como-funciona" className="hover:text-blue-600">
+          <a href="#SectionHowWorks" className="scroll-mt-20">
             Como Funciona
           </a>
         </li>

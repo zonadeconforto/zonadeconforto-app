@@ -40,9 +40,18 @@ export default function LoginPage() {
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
-        setError(err.message);
+        // to translate the erros to portuguese
+        const errorToPortuguese: Record<string, string> = {
+          "User not found": "Usuário não encontrado",
+          "Invalid credentials": "Email ou senha inválidos",
+        };
+
+        const errorMessage =
+          errorToPortuguese[err.message] || "Erro ao fazer login. Tente novamente.";
+
+        setError(errorMessage);
       } else {
-        setError("Unexpected error occurred");
+        setError("Ocorreu um erro inesperado.");
       }
     } finally {
       setLoading(false);
@@ -82,7 +91,7 @@ export default function LoginPage() {
               label="Email"
               type="email"
               value={email}
-              placeholder="fulano@mail.com.br"
+              placeholder="Digite seu Email"
               required
               onChange={v => setEmail(v)}
             />
