@@ -4,26 +4,9 @@ import BackButtonA from "@/shared/components/BackButtonA";
 import { UserDashboard } from "@/shared/components/UserDashboard";
 import { useEffect, useState } from "react";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-function formatCPF(cpf: string | null | undefined) {
-  if (!cpf) return "";
-
-  return cpf
-    .replace(/\D+/g, "")
-    .replace(/(\d{3})(\d)/, "$1.$2")
-    .replace(/(\d{3})(\d)/, "$1.$2")
-    .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-}
-
-function formatPhone(phone: string | null | undefined) {
-  if (!phone) return "";
-
-  return phone
-    .replace(/\D+/g, "")
-    .replace(/(\d{2})(\d)/, "($1) $2")
-    .replace(/(\d{5})(\d)/, "$1-$2")
-    .replace(/(-\d{4})\d+?$/, "$1");
-}
+import { formatDate } from "@/shared/utils/formatters/formatDate";
+import { formatCPF } from "@/shared/utils/formatters/formatCPF";
+import { formatPhone } from "@/shared/utils/formatters/formatPhone";
 
 interface User {
   id: string;
@@ -37,6 +20,7 @@ interface User {
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     async function loadUsers() {
       try {
@@ -102,7 +86,7 @@ export default function UsersPage() {
                 <td className="p-3 border border-zinc-700 capitalize">{users.name}</td>
                 <td className="p-3 border border-zinc-700">{users.email}</td>
                 <td className="p-3 border border-zinc-700">{users.plan}</td>
-                <td className="p-3 border border-zinc-700">{users.createdAt}</td>
+                <td className="p-3 border border-zinc-700">{formatDate(users.createdAt)}</td>
                 <td className="p-3 border border-zinc-700">{formatPhone(users.phone)}</td>
                 <td className="p-3 border border-zinc-700">{formatCPF(users.cpf)}</td>
                 <td className="p-3 border border-zinc-700 flex gap-3">
@@ -117,7 +101,6 @@ export default function UsersPage() {
         </table>
         <UserDashboard></UserDashboard>
       </div>
-      )
     </main>
   );
 }
